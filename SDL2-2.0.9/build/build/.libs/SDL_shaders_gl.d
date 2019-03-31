@@ -1,0 +1,23 @@
+build/SDL_shaders_gl.lo: \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/opengl/SDL_shaders_gl.c \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/opengl/../../SDL_internal.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/opengl/../../dynapi/SDL_dynapi.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/opengl/../../dynapi/SDL_dynapi_overrides.h \
+  include/SDL_config.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_platform.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/begin_code.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/close_code.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_stdinc.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_config.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_log.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_opengl.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_opengl_glext.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_video.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_pixels.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_endian.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_rect.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_error.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_rwops.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_surface.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_blendmode.h \
+  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/opengl/SDL_shaders_gl.h
