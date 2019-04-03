@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/10 18:53:36 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:15:53 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ t_plan		*plan_parsing(int fd)
 			plan->normal[2] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
 			plan->color = ft_atoi_hexa(tab[1]);
+		else
+		{
+			printf("parse plan error\n");
+			exit(1);
+		}
 		free(tab[0]);
 		free(tab[1]);
 		free(tab);

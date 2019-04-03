@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/20 04:51:36 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:15:14 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ t_light		*light_parsing(int fd, t_light *light)
 			light->diffuse_color = ft_atoi_hexa(tab[1]);
 		else if (ft_strcmp(tab[0],"\tsize") == 0)
 			light->size = ft_atoi_double(tab[1]);
+		else
+		{
+			printf("parse light error\n");
+			exit(1);
+		}
 		free(tab[0]);
 		free(tab[1]);
 		free(tab);

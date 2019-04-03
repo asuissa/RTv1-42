@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/10 18:54:42 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:13:33 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ t_cylender	*cylender_parsing(int fd)
 			cylender->radius = (ft_atoi_double(tab[1]) * M_PI) / 180;
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
 			cylender->color = ft_atoi_hexa(tab[1]);
+		else
+		{
+			printf("parse cylinder error\n");
+			exit(1);
+		}
 		free(tab[0]);
 		free(tab[1]);
 		free(tab);

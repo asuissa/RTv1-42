@@ -1,23 +1,23 @@
 build/SDL_blendline.lo: \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_blendline.c \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/../../SDL_internal.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi_overrides.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_blendline.c \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../SDL_internal.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_platform.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/begin_code.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/close_code.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_draw.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/../../video/SDL_blit.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_cpuinfo.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_stdinc.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_config.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_endian.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_surface.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_pixels.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_rect.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_error.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_rwops.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/include/SDL_blendmode.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_blendline.h \
-  /Users/ymekraou/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_blendpoint.h
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_platform.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/begin_code.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/close_code.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_draw.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../video/SDL_blit.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_cpuinfo.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_stdinc.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_config.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_endian.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_surface.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_pixels.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_rect.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_error.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_rwops.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_blendmode.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_blendline.h \
+  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_blendpoint.h

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 01:36:56 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/10 18:54:10 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:10:56 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ t_cone	*cone_parsing(int fd)
 			cone->aperture = (ft_atoi_double(tab[1]) * M_PI) / 180;
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
 			cone->color = ft_atoi_hexa(tab[1]);
+		else
+		{
+			printf("parse cone error\n");
+			exit(1);
+		}
 		free(tab[0]);
 		free(tab[1]);
 		free(tab);

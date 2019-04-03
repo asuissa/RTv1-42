@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/09 18:47:46 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:07:12 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ void	camera_parsing(int fd,  t_camera *cam)
 			cam->cam_pos[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
 			cam->cam_pos[1] = ft_atoi_double(tab[1]);
-
-
 		else if (ft_strcmp(tab[0],"\tposition.z") == 0)
 			cam->cam_pos[2] = ft_atoi_double(tab[1]);
-
+		else
+		{
+			printf("parse cam error\n");
+			exit(1);
+		}
 		free(tab[0]);
 		free(tab[1]);
 		free(tab);

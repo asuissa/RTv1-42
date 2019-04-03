@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/13 20:26:14 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:01:30 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int			main_loop(t_env *env)
 	SDL_Event		event;
 	int				quit;
 
-	if (!(access_surface_pixels(env))) 
+	if (!(access_surface_pixels(env)))
 		return (sdl_has_fcked_up(env));
-	if (SDL_UpdateWindowSurface(env->window) < 0) 
+	if (SDL_UpdateWindowSurface(env->window) < 0)
 		return (sdl_has_fcked_up(env));
 	quit = 0;
 	while (!quit)

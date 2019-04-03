@@ -1,6 +1,6 @@
 # sdl pkg-config source file
 
-prefix=/Users/ymekraou/Documents/rtv1/SDL2_utils
+prefix=/Users/asuissa/Documents/rtv1/SDL2_utils
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

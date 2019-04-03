@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/17 00:05:47 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:05:09 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ t_light		*get_last_light(t_light **head)
 {
 	t_light	*tmp;
 
-
 	if (!(*head))
 	{
-
 		*head = (t_light*)malloc(sizeof(t_light));
-
 		(*head)->next = NULL;
 		return (*head);
 	}
@@ -66,9 +63,12 @@ void		file_parsing(char *file, t_env *env)
 	char		*line;
 
 	if ((fd = open(file, O_RDONLY)) <= 2)
+	{
 		printf("c la merd!\n");
+		exit(1);
+	}
 	env->elem = NULL;
-	env->light = NULL;	
+	env->light = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		printf("->%s\n", line);
@@ -112,8 +112,30 @@ void		file_parsing(char *file, t_env *env)
 			new_elem->hit_funct = &hit_cylender;
 			printf("cylender done\n");
 		}
-
+		else
+		{
+			ft_strdel(&line);
+			printf("Error format\n"); //a enlever c'est pour l'idee
+			exit(1);
+		}
 		ft_strdel(&line);
 	}
 	close(fd);
 }
+
+/*int		parse1(char *line, t_env *env, int fd)
+{
+	t_light		*new_light;
+
+	if (ft_strcmp("camera:", line)  == 0)
+	{	
+		camera_parsing(fd, &(env->cam));
+		printf("cam done\n");
+	}
+	else if (ft_strcmp("light:", line)  == 0)
+	{
+		new_light = get_last_light(&(env->light));
+		light_parsing(fd, new_light);
+		printf("light done\n");
+	}
+}*/

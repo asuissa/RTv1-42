@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/10 18:53:04 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 22:16:17 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ t_sphere	*sphere_parsing(int fd)
 			sphere->radius = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
 			sphere->color = ft_atoi_hexa(tab[1]);
+		else
+		{
+			printf("parse sphere error\n");
+			exit(1);
+		}
 		free(tab[0]);
 		free(tab[1]);
 		free(tab);
