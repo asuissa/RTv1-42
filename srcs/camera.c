@@ -6,13 +6,27 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 15:11:51 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 23:15:42 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void	init_cam(t_camera *cam)
+void		ft_free_parse(char **tab, char *line)
+{
+		free(tab[0]);
+		free(tab[1]);
+		free(tab);
+		free(line);
+}
+
+void		ft_error(char *msg)
+{
+	ft_putstr(msg);
+	exit(1);
+}
+
+void		init_cam(t_camera *cam)
 {
 	cam->cam_pos_relative[0] = 0;
 	cam->cam_pos_relative[1] = 0;
@@ -25,7 +39,7 @@ void	init_cam(t_camera *cam)
 	cam->pas = cam->vp_dim / ((double)(SCREEN_WIDTH) / 2.0);
 }
 
-void	camera_parsing(int fd, t_camera *cam)
+void		camera_parsing(int fd, t_camera *cam)
 {
 	char	*line;
 	char	**tab;
@@ -48,9 +62,11 @@ void	camera_parsing(int fd, t_camera *cam)
 			cam->cam_angle[1] = (ft_atoi_double(tab[1]) * M_PI) / 180;
 		else if (ft_strcmp(tab[0], "\tangle.z") == 0)
 			cam->cam_angle[2] = (ft_atoi_double(tab[1]) * M_PI) / 180;
-		free(tab[0]);
-		free(tab[1]);
-		free(tab);
-		free(line);
+		else
+		{
+			ft_free_parse(tab, line);
+			ft_error("parse cam error\n");
+		}
+		ft_free_parse(tab, line);
 	}
 }

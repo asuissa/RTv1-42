@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/03 08:08:58 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 23:22:31 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,13 @@ t_sphere	*sphere_parsing(int fd, t_camera *cam)
 			sphere->radius = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
 			sphere->color = ft_atoi_hexa(tab[1]);
-		free(tab[0]);
-		free(tab[1]);
-		free(tab);
-		free(line);
+		else
+		{
+			ft_free_parse(tab, line);
+			ft_error("parse cam error\n");
+		}
+		ft_free_parse(tab, line);
 	}
-
 	translate(sphere->center_relative, cam->cam_pos);
 	rotate(sphere->center_relative, cam->cam_angle);
 	return (sphere);

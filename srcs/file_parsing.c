@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 15:13:25 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 23:19:07 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,11 @@ void		file_parsing(char *file, t_env *env)
 			new_elem->hit_funct = &hit_cylender;
 			new_elem->update_funct = &update_cylender;
 			printf("cylender done\n");
+		}
+		else
+		{
+			ft_strdel(&line);
+			ft_error("Error format\n");
 		}
 		ft_strdel(&line);
 	}

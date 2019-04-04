@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/01 02:55:35 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 23:20:25 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 			light->diffuse_color = ft_atoi_hexa(tab[1]);
 		else if (ft_strcmp(tab[0],"\tsize") == 0)
 			light->size = ft_atoi_double(tab[1]);
-		free(tab[0]);
-		free(tab[1]);
-		free(tab);
-		free(line);
+		else
+		{
+			ft_free_parse(tab, line);
+			ft_error("parse light error\n");
+		}
+		ft_free_parse(tab, line);
 	}
 	rotate(light->direction, light->light_angle);
 	i = -1;

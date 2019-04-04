@@ -36,7 +36,6 @@ plan:
 	normal.z: 0
 	color: FFFFFF
 
-
 plan:
 	position.x: 0
 	position.y: -1

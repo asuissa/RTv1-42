@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/03 08:07:52 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 23:17:08 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 			cylender->radius = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
 			cylender->color = ft_atoi_hexa(tab[1]);
-		free(tab[0]);
-		free(tab[1]);
-		free(tab);
-		free(line);
+		else
+		{
+			ft_free_parse(tab, line);
+			ft_error("parse cylinder error\n");
+		}
+		ft_free_parse(tab, line);
 	}
 	i = -1;
 	while (++i < 3)

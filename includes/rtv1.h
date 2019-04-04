@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 16:55:59 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 23:16:26 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,4 +210,8 @@ void			update_sphere(void *sphere, t_camera *cam);
 void			update_plan(void *plan, t_camera *cam);
 void			update_cylender(void *cylender, t_camera *cam);
 void			update_cone(void *cone, t_camera *cam);
+
+void			ft_error(char *msg);
+void			ft_free_parse(char **tab, char *line);
+
 #endif
