@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 23:19:07 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/04 23:33:41 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,21 @@ void		file_parsing(char *file, t_env *env)
 	t_light		*new_light;
 	int			fd;
 	char		*line;
+	int			i;
 
+	i = 0;
 	if ((fd = open(file, O_RDONLY)) <= 2)
-		exit(0);;
+		ft_error("Error fd open\n");
 	env->elem = NULL;
-	env->light = NULL;	
+	env->light = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
+		i++;
 		printf("->%s\n", line);
 		if (ft_strcmp("camera:", line)  == 0)
-		{	
+		{
+			if (i != 1)
+				ft_error("Cam non 1st\n");
 			camera_parsing(fd, &(env->cam));
 			printf("cam done\n");
 		}
