@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 23:15:42 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/05 00:09:21 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 void		ft_free_parse(char **tab, char *line)
 {
-		free(tab[0]);
-		free(tab[1]);
-		free(tab);
-		free(line);
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	free(line);
 }
 
 void		ft_error(char *msg)
@@ -49,7 +55,8 @@ void		camera_parsing(int fd, t_camera *cam)
 	{
 		if (line[0] == '\0')
 			break ;
-		tab = ft_strsplit(line, ':');
+		if (!(tab = ft_strsplit(line, ':')))
+				ft_error("Parsing error\n");
 		if (ft_strcmp(tab[0], "\tposition.x") == 0)
 			cam->cam_pos[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0], "\tposition.y") == 0)
