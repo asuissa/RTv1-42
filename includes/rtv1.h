@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/20 04:15:01 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 22:18:30 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct	s_light
 	int				diffuse_blue;
 	double			specular;
 	double			size;
+	char			*type;
 	struct s_light	*next;
 }				t_light;
 
@@ -92,7 +93,7 @@ typedef struct	s_cone
 typedef struct	s_cylender
 {
 	char	*type;
-	double	origin[3];		 
+	double	origin[3];
 	double	line_vector[3];
 	double	radius;	
 	int		color;
@@ -113,7 +114,6 @@ typedef struct	s_env
 	t_camera	cam;
 	t_light		*light;
 	t_elem		*elem;
-						
 }				t_env;
 
 int				access_surface_pixels(t_env *env);
