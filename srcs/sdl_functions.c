@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 23:59:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/16 22:56:03 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 17:00:40 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,24 @@
 
 int			access_surface_pixels(t_env *env)
 {
-	int				*pixels;
-/*	SDL_PixelFormat *pf;
-	Uint32			pxftenum;
-	const char		*str;
-*/
-	pixels = NULL;
-/*
-	if(!(env->screen = SDL_ConvertSurfaceFormat(env->screen, SDL_PIXELFORMAT_RGBA8888, 0)))
-		printf("caca\n");
-	
-	pf = env->screen->format;
-	pxftenum = pf->format;
-	str = SDL_GetPixelFormatName(pxftenum);
-	SDL_Log("%s\n", str);i*/
+	pthread_t	thread_id[8];
+	t_thread	data[8];
+	int			i;
 
 	if (!(SDL_LockSurface(env->screen)))
 	{
-		pixels = env->screen->pixels;
-		//move objects in camera space
-		test(pixels, env);
+		i = -1;
+		while (++i < 8)
+		{
+			data[i].env = env;
+			data[i].pixel_end = ((i + 1) * 125000) - 1;
+			data[i].pixel_start = i * 125000;
+			data[i].offset = (env->cam.vp_dim / 4.0) * i;
+			pthread_create(&(thread_id[i]), NULL, ray_casting, &(data[i]));
+		}
+		i = -1;
+		while (++i < 8)
+			pthread_join(thread_id[i], NULL);
 		SDL_UnlockSurface(env->screen);
 		return (1);
 	}

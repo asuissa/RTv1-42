@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/17 00:05:47 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 15:13:25 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		file_parsing(char *file, t_env *env)
 	char		*line;
 
 	if ((fd = open(file, O_RDONLY)) <= 2)
-		printf("c la merd!\n");
+		exit(0);;
 	env->elem = NULL;
 	env->light = NULL;	
 	while (get_next_line(fd, &line) > 0)
@@ -81,38 +81,41 @@ void		file_parsing(char *file, t_env *env)
 		{
 			new_light = get_last_light(&(env->light));
 
-			light_parsing(fd, new_light);
+			light_parsing(fd, new_light, &(env->cam));
 			printf("light done\n");
 		}
 		else if (ft_strcmp("sphere:", line)  == 0)
 		{
 			new_elem = get_last_elem(&(env->elem));
-			new_elem->object = sphere_parsing(fd);
+			new_elem->object = sphere_parsing(fd, &(env->cam));
 			new_elem->hit_funct = &hit_sphere;
+			new_elem->update_funct = &update_sphere;
 			printf("sphere done\n");
 		}
 		else if (ft_strcmp("plan:", line)  == 0)
 		{
 			new_elem = get_last_elem(&(env->elem));
-			new_elem->object = plan_parsing(fd);
+			new_elem->object = plan_parsing(fd, &(env->cam));
 			new_elem->hit_funct = &hit_plan;
+			new_elem->update_funct = &update_plan;
 			printf("plan done\n");
 		}
 		else if (ft_strcmp("cone:", line)  == 0)
 		{
 			new_elem = get_last_elem(&(env->elem));
-			new_elem->object = cone_parsing(fd);
+			new_elem->object = cone_parsing(fd, &(env->cam));
 			new_elem->hit_funct = &hit_cone;
+			new_elem->update_funct = &update_cone;
 			printf("cone done\n");
 		}
 		else if (ft_strcmp("cylender:", line)  == 0)
 		{
 			new_elem = get_last_elem(&(env->elem));
-			new_elem->object = cylender_parsing(fd);
+			new_elem->object = cylender_parsing(fd, &(env->cam));
 			new_elem->hit_funct = &hit_cylender;
+			new_elem->update_funct = &update_cylender;
 			printf("cylender done\n");
 		}
-
 		ft_strdel(&line);
 	}
 	close(fd);

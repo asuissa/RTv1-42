@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/20 04:15:01 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 16:55:59 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <pthread.h>
 # include "libft.h"
 # include "SDL.h"
 
 # define SCREEN_WIDTH 1000
 # define SCREEN_HEIGHT 1000
-
-
 
 typedef struct	s_hit
 {
@@ -41,16 +40,23 @@ typedef struct	s_hit
 
 typedef struct	s_camera
 {
-	double	cam_pos[3];		//camera pos 
+	double	cam_pos[3];		//camera pos
+	double	cam_angle[3];
+	double	cam_pos_relative[3];
 	double	vp_center[3];	//view port center
 	double	vf_angle;		//view field angle
 	double	vp_dim;			//vp half ken
+	double	pas;
 
 }				t_camera;
 
 typedef struct	s_light
 {
 	double			pos[3];
+	double			pos_relative[3];
+	double			light_angle[3];
+	double			direction[3];
+	double			direction_relative[3];
 	double			ambient;
 	int				diffuse_color;
 	int				diffuse_red;
@@ -64,7 +70,8 @@ typedef struct	s_light
 typedef struct	s_sphere
 {
 	char	*type;
-	double	center[3];		//camera pos 
+	double	center[3];		//camera pos
+	double	center_relative[3];
 	double	radius;			//view port center
 	int		color;
 	int		code;
@@ -74,7 +81,9 @@ typedef struct	s_plan
 {
 	char	*type;
 	double	point[3];		//plan origin 
-	double	normal[3];		//plan vector
+	double	point_relative[3];		
+	double	normal[3];			
+	double	normal_relative[3];		//plan vector
 	int		color;
 	int		code;
 }				t_plan;
@@ -83,8 +92,10 @@ typedef struct	s_cone
 {
 	char	*type;
 	double	origin[3];		//cone origin 
+	double	origin_relative[3];		//cone origin 
 	double	aperture;		//divided by 2
 	double	vector[3];
+	double	vector_relative[3];
 	int		color;
 	int		code;
 }				t_cone;
@@ -93,7 +104,9 @@ typedef struct	s_cylender
 {
 	char	*type;
 	double	origin[3];		 
+	double	origin_relative[3];		 
 	double	line_vector[3];
+	double	line_vector_relative[3];
 	double	radius;	
 	int		color;
 	int		code;
@@ -103,6 +116,7 @@ typedef struct	s_elem
 {
 	void			*object;
 	void			(*hit_funct)(double[3], double[3], void*, t_hit*);
+	void			(*update_funct)(void*, t_camera*);
 	struct s_elem	*next;
 }				t_elem;
 
@@ -113,8 +127,17 @@ typedef struct	s_env
 	t_camera	cam;
 	t_light		*light;
 	t_elem		*elem;
-						
 }				t_env;
+
+typedef struct	s_thread
+{
+	t_env	*env;
+	int		pixel_end;
+	int		pixel_start;
+	double	offset;
+}				t_thread;
+
+
 
 int				access_surface_pixels(t_env *env);
 
@@ -127,22 +150,27 @@ void			init_sphere(t_sphere *sphere);
 void			init_cone(t_cone *cone);
 void			init_cylender(t_cylender *cylender);
 
-void			test(int *pixels, t_env *env);
+
+
+int				compute_hit_point(t_hit *hit_point, double tmp[3],
+									double cam_center[3], int color);
+void			*ray_casting(void *arg);
 
 double			dot_product(double vec1[3], double vec2[3]);
 void			norm_vector(double vec[3]);
 double			point_distance(double coord_one[3], double coord_two[3]);
+double			compute_ratio(double a, double b, double c);
 
 void			file_parsing(char *file, t_env *env);
 double			ft_atoi_double(char *str);
 int				ft_atoi_hexa(char *str);
 
 void			camera_parsing(int fd, t_camera *cam);
-t_light			*light_parsing(int fd, t_light *light);
-t_sphere		*sphere_parsing(int fd);
-t_plan			*plan_parsing(int fd);
-t_cone			*cone_parsing(int fd);
-t_cylender		*cylender_parsing(int fd);
+t_light			*light_parsing(int fd, t_light *light, t_camera *cam);
+t_sphere		*sphere_parsing(int fd, t_camera *cam);
+t_plan			*plan_parsing(int fd, t_camera *cam);
+t_cone			*cone_parsing(int fd, t_camera *cam);
+t_cylender		*cylender_parsing(int fd, t_camera *cam);
 
 void			hit_sphere(double ray_vector[3],
 							double cam_center[3],
@@ -174,4 +202,12 @@ double			point_distance(double coord_one[3], double coord_two[3]);
 
 void			compute_color(t_light *light, t_hit *hit_point, double ray_vector[3], t_elem *elem);
 
+void			rotate(double coord[3], double cam_angle[3]);
+void			translate(double coord[3], double cam_pos[3]);
+
+void			update_scene(t_env *env);
+void			update_sphere(void *sphere, t_camera *cam);
+void			update_plan(void *plan, t_camera *cam);
+void			update_cylender(void *cylender, t_camera *cam);
+void			update_cone(void *cone, t_camera *cam);
 #endif

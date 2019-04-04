@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/03/16 01:10:46 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/04 12:02:07 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = srcs/
 
 SRCS_BASENAME = main.c \
 	  sdl_functions.c \
-	  vector_functions.c \
+	  maths_functions.c \
 	  light.c \
 	  color.c \
 	  camera.c \
@@ -30,10 +30,14 @@ SRCS_BASENAME = main.c \
 	  file_parsing.c \
 	  custom_atoi.c \
 	  normal.c \
-
-INCS = includes/
-
-HEADS = includes/rtv1.h
+	  camera_movement.c \
+	  update_coord.c \
+	  hit_sphere.c \
+	  hit_cone.c \
+	  hit_plan.c \
+	  hit_cylender.c \
+	
+INC = includes/rtv1.h
 
 OBJS_DIR = objs/
 OBJS_ALL = $(addprefix $(OBJS_DIR), $(SRCS_BASENAME:.c=.o))
@@ -63,8 +67,8 @@ create_obj_dir:
 $(NAME): $(OBJS_ALL) $(LIBFT_DIR)libft.a
 	$(CC) -o $@ $^ -L $(SDL_LIBPATH) -L $(LIBFT_DIR) $(LDFLAGS)
 	
-$(OBJS_DIR)%.o: $(SRCS)%.c
-	$(CC) $(CFLAGS) -c $< -I $(INCS) -I $(INC_PATHSDL) -I $(LIBFT_DIR)includes/ -o $@
+$(OBJS_DIR)%.o: $(SRCS)%.c $(INC)
+	$(CC) $(CFLAGS) -c $< -I $(INC) -I $(INC_PATHSDL) -I $(LIBFT_DIR)includes/ -o $@
 
 libft:
 	make -C $(LIBFT_DIR)

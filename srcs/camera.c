@@ -6,25 +6,26 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/09 18:47:46 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 15:11:51 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 void	init_cam(t_camera *cam)
 {
-	cam->cam_pos[0] = 0;
-	cam->cam_pos[1] = 0;
-	cam->cam_pos[2] = 0;
+	cam->cam_pos_relative[0] = 0;
+	cam->cam_pos_relative[1] = 0;
+	cam->cam_pos_relative[2] = 0;
 	cam->vp_center[0] = 0;
 	cam->vp_center[1] = 0;
 	cam->vp_center[2] = 1;
-	cam->vf_angle = (90 * M_PI) / 180;
-	cam->vp_dim = atan(cam->vf_angle / 2);
+	cam->vf_angle = (90.0 * M_PI) / 180.0;
+	cam->vp_dim = (double)(fabs(atan(cam->vf_angle / 2.0)));
+	cam->pas = cam->vp_dim / ((double)(SCREEN_WIDTH) / 2.0);
 }
 
-void	camera_parsing(int fd,  t_camera *cam)
+void	camera_parsing(int fd, t_camera *cam)
 {
 	char	*line;
 	char	**tab;
@@ -33,17 +34,20 @@ void	camera_parsing(int fd,  t_camera *cam)
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line[0] == '\0')
-			break;
+			break ;
 		tab = ft_strsplit(line, ':');
-		if (ft_strcmp(tab[0],"\tposition.x") == 0)
+		if (ft_strcmp(tab[0], "\tposition.x") == 0)
 			cam->cam_pos[0] = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
+		else if (ft_strcmp(tab[0], "\tposition.y") == 0)
 			cam->cam_pos[1] = ft_atoi_double(tab[1]);
-
-
-		else if (ft_strcmp(tab[0],"\tposition.z") == 0)
+		else if (ft_strcmp(tab[0], "\tposition.z") == 0)
 			cam->cam_pos[2] = ft_atoi_double(tab[1]);
-
+		else if (ft_strcmp(tab[0], "\tangle.x") == 0)
+			cam->cam_angle[0] = (ft_atoi_double(tab[1]) * M_PI) / 180;
+		else if (ft_strcmp(tab[0], "\tangle.y") == 0)
+			cam->cam_angle[1] = (ft_atoi_double(tab[1]) * M_PI) / 180;
+		else if (ft_strcmp(tab[0], "\tangle.z") == 0)
+			cam->cam_angle[2] = (ft_atoi_double(tab[1]) * M_PI) / 180;
 		free(tab[0]);
 		free(tab[1]);
 		free(tab);

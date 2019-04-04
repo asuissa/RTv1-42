@@ -6,11 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 05:57:35 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/09 13:20:57 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/04 17:02:53 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 int				avoid_spacing_char(char *str)
 {
@@ -55,7 +55,7 @@ int				convert_hexa(char c)
 	if (c >= '0' && c <= '9')
 		return (c - '0');
 	if (c >= 'A' && c <= 'F')
-		return (10 + (c -'A'));
+		return (10 + (c - 'A'));
 	return (-1);
 }
 

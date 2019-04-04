@@ -6,11 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 18:48:02 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/22 12:16:53 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 08:08:23 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 void 	normal_sphere(double sphere_center[3], t_hit *hit_point)
 {
@@ -28,7 +28,8 @@ void 	normal_plan(double normal_plan[3], t_hit *hit_point)
 
 	i = -1;
 	while (++i < 3)
-		hit_point->normal[i] = -normal_plan[i];
+		hit_point->normal[i] = normal_plan[i];
+	norm_vector(hit_point->normal);
 }
 
 void	normal_cylender(t_cylender *cylender, t_hit *hit_point)
@@ -37,13 +38,11 @@ void	normal_cylender(t_cylender *cylender, t_hit *hit_point)
 	double t;
 	int i;
 
+	t =  -(dot_product(cylender->origin_relative, cylender->line_vector_relative)
+		- dot_product(hit_point->coord, cylender->line_vector_relative));
 	i = -1;
 	while (++i < 3)
-		tmp[i] = hit_point->coord[i] - cylender->origin[i];
-	t = dot_product(tmp, cylender->line_vector);
-	i = -1;
-	while (++i < 3)
-		tmp[i] = cylender->origin[i] + t * cylender->line_vector[i];
+		tmp[i] = cylender->origin_relative[i] + t * cylender->line_vector_relative[i];
 	i = -1;
 	while (++i < 3)
 		hit_point->normal[i] = (hit_point->coord[i] - tmp[i]);
@@ -58,11 +57,11 @@ void	normal_cone(t_cone *cone, t_hit *hit_point)
 
 	i = -1;
 	while (++i < 3)
-		tmp[i] = hit_point->coord[i] - cone->origin[i];
-	t = dot_product(tmp, tmp) / dot_product(cone->vector, tmp);
+		tmp[i] = hit_point->coord[i] - cone->origin_relative[i];
+	t = dot_product(tmp, tmp) / dot_product(cone->vector_relative, tmp);
 	i = -1;
 	while (++i < 3)
-		tmp[i] = cone->origin[i] + t * cone->vector[i];
+		tmp[i] = cone->origin_relative[i] + t * cone->vector_relative[i];
 	i = -1;
 	while (++i < 3)
 		hit_point->normal[i] = (hit_point->coord[i] - tmp[i]);

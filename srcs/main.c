@@ -6,11 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/13 20:26:14 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/03/30 22:27:58 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 void		quit_sdl(SDL_Window *window)
 {
@@ -45,8 +45,44 @@ int			main_loop(t_env *env)
 			if (event.type == SDL_QUIT)
 				quit = 1;
 			if (event.type == SDL_KEYDOWN)
+			{
 				if (event.key.keysym.sym == SDLK_ESCAPE)
 					quit = 1;
+				if (event.key.keysym.sym == SDLK_UP)
+					env->cam.cam_pos[2] += 1.0;
+				if (event.key.keysym.sym == SDLK_DOWN)
+					env->cam.cam_pos[2] -= 1.0;
+				if (event.key.keysym.sym == SDLK_RIGHT)
+					env->cam.cam_pos[0] += 1.0;
+				if (event.key.keysym.sym == SDLK_LEFT)
+					env->cam.cam_pos[0] -= 1.0;
+				if (event.key.keysym.sym == SDLK_a)
+					env->cam.cam_pos[1] += 1.0;
+				if (event.key.keysym.sym == SDLK_q)
+					env->cam.cam_pos[1] -= 1.0;
+				
+				if (event.key.keysym.sym == SDLK_e)
+					env->cam.cam_angle[0] += (M_PI / 180.0);
+				if (event.key.keysym.sym == SDLK_d)
+					env->cam.cam_angle[0] -= (M_PI / 180.0);
+				if (event.key.keysym.sym == SDLK_r)
+					env->cam.cam_angle[1] += (M_PI / 180.0);
+				if (event.key.keysym.sym == SDLK_f)
+					env->cam.cam_angle[1] -= (M_PI / 180.0);
+				if (event.key.keysym.sym == SDLK_t)
+					env->cam.cam_angle[2] += (M_PI / 180.0);
+				if (event.key.keysym.sym == SDLK_g)
+					env->cam.cam_angle[2] -= (M_PI / 180.0);
+
+
+				if (event.key.keysym.sym != SDLK_ESCAPE)
+				{
+					update_scene(env);
+					access_surface_pixels(env);
+					SDL_UpdateWindowSurface(env->window); 
+				}
+
+			}
 		}
 	}
 	return (1);

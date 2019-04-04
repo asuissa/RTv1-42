@@ -6,11 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/10 18:53:04 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 08:08:58 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 void	init_sphere(t_sphere *sphere)
 {
@@ -23,7 +23,7 @@ void	init_sphere(t_sphere *sphere)
 	sphere->code = 1;	
 }
 
-t_sphere	*sphere_parsing(int fd)
+t_sphere	*sphere_parsing(int fd, t_camera *cam)
 {
 	t_sphere	*sphere;
 	char		*line;
@@ -38,11 +38,22 @@ t_sphere	*sphere_parsing(int fd)
 			break;
 		tab = ft_strsplit(line, ':');
 		if (ft_strcmp(tab[0],"\tposition.x") == 0)
+		{
 			sphere->center[0] = ft_atoi_double(tab[1]);
+			sphere->center_relative[0] = sphere->center[0];
+
+		}
 		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
+		{
 			sphere->center[1] = ft_atoi_double(tab[1]);
+			sphere->center_relative[1] = sphere->center[1];
+
+		}
 		else if (ft_strcmp(tab[0],"\tposition.z") == 0)
+		{
 			sphere->center[2] = ft_atoi_double(tab[1]);
+			sphere->center_relative[2] = sphere->center[2];
+		}
 		else if (ft_strcmp(tab[0],"\tradius") == 0)
 			sphere->radius = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
@@ -52,5 +63,8 @@ t_sphere	*sphere_parsing(int fd)
 		free(tab);
 		free(line);
 	}
+
+	translate(sphere->center_relative, cam->cam_pos);
+	rotate(sphere->center_relative, cam->cam_angle);
 	return (sphere);
 }

@@ -6,19 +6,19 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 01:36:56 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/03/10 18:54:10 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/03 08:07:19 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "../includes/rtv1.h"
 
 void	init_cone(t_cone *cone)
 {
 	cone->origin[0] = 0;
 	cone->origin[1] = 0;
-	cone->origin[2] = 2;
+	cone->origin[2] = 0;
 	cone->vector[0] = 0;
-	cone->vector[1] = 1;
+	cone->vector[1] = 0;
 	cone->vector[2] = 0;
 	norm_vector(cone->vector);
 	cone->aperture = (25 * M_PI) / 180;
@@ -26,11 +26,12 @@ void	init_cone(t_cone *cone)
 	cone->code = 3;
 }
 
-t_cone	*cone_parsing(int fd)
+t_cone	*cone_parsing(int fd, t_camera *cam)
 {
 	t_cone		*cone;
 	char		*line;
 	char		**tab;
+	int			i;
 
 	cone = (t_cone*)malloc(sizeof(t_cone));
 	init_cone(cone);
@@ -61,6 +62,15 @@ t_cone	*cone_parsing(int fd)
 		free(tab);
 		free(line);
 	}
-	norm_vector(cone->vector);
+	i = -1;
+	while (++i < 3)
+	{
+		cone->origin_relative[i] = cone->origin[i];
+		cone->vector_relative[i] = cone->vector[i];
+	}
+	translate(cone->origin_relative, cam->cam_pos);
+	rotate(cone->origin_relative, cam->cam_angle);
+	rotate(cone->vector_relative, cam->cam_angle);
+	norm_vector(cone->vector_relative);
 	return (cone);
 }

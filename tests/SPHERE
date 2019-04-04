@@ -1,11 +1,50 @@
 camera:
 	position.x: 0
-	position.y: 0
-	position.z: 0
+	position.y: 2
+	position.z: -15
+	angle.x: 0
+	angle.y: 0
+	angle.z: 0
+
+light:
+	position.x: -50
+	position.y: 2
+	position.z: -10
+	angle.x: 20
+	angle.y: -75
+	angle.z: 0
+	diffuse_color: FFFFFF
+
+light:
+	position.x: 50
+	position.y: 2
+	position.z: -10
+	angle.x: 20
+	angle.y: 75
+	angle.z: 0
+	diffuse_color: FFFFFF
 
 sphere:
 	position.x: 0
-	position.y: 0
-	position.z: 5
+	position.y: 2
+	position.z: 3
 	radius: 1
 	color: FF0000
+
+plan:
+	position.x: 0
+	position.y: 0
+	position.z: 5
+	normal.x: 0
+	normal.y: 0
+	normal.z: -1
+	color: FFFFFF
+
+plan:
+	position.x: 0
+	position.y: 0
+	position.z: 0
+	normal.x: 0
+	normal.y: 1
+	normal.z: 0
+	color: FFFFFF
