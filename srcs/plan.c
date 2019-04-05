@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 23:51:37 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/05 02:04:14 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,20 @@ t_plan		*plan_parsing(int fd, t_camera *cam)
 		printf("line => %s\n", line);
 		if (line[0] == '\0')
 			break;
-		tab = ft_strsplit(line, ':');
+		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
+			ft_error("Error parse word\n");
 		if (ft_strcmp(tab[0],"\tposition.x") == 0)
-			plan->point[0] = ft_atoi_double(tab[1]);	
+			plan->point[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
-			plan->point[1] = ft_atoi_double(tab[1]);	
+			plan->point[1] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tposition.z") == 0)
-			plan->point[2] = ft_atoi_double(tab[1]);	
+			plan->point[2] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tnormal.x") == 0)
-			plan->normal[0] = ft_atoi_double(tab[1]);	
+			plan->normal[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tnormal.y") == 0)
-			plan->normal[1] = ft_atoi_double(tab[1]);	
+			plan->normal[1] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tnormal.z") == 0)
-			plan->normal[2] = ft_atoi_double(tab[1]);	
+			plan->normal[2] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
 			plan->color = ft_atoi_hexa(tab[1]);
 		else

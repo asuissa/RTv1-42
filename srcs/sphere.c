@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 23:22:31 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/05 02:12:14 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,17 @@ t_sphere	*sphere_parsing(int fd, t_camera *cam)
 		printf("line => %s\n", line);
 		if (line[0] == '\0')
 			break;
-		tab = ft_strsplit(line, ':');
+		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
+			ft_error("Error parse word\n");
 		if (ft_strcmp(tab[0],"\tposition.x") == 0)
 		{
 			sphere->center[0] = ft_atoi_double(tab[1]);
 			sphere->center_relative[0] = sphere->center[0];
-
 		}
 		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
 		{
 			sphere->center[1] = ft_atoi_double(tab[1]);
 			sphere->center_relative[1] = sphere->center[1];
-
 		}
 		else if (ft_strcmp(tab[0],"\tposition.z") == 0)
 		{

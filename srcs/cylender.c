@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 23:17:08 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/05 02:10:58 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 		printf("line => %s\n", line);
 		if (line[0] == '\0')
 			break;
-		tab = ft_strsplit(line, ':');
+		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
+			ft_error("Error parse word\n");
 		if (ft_strcmp(tab[0],"\tposition.x") == 0)
 			cylender->origin[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tposition.y") == 0)

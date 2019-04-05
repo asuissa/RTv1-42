@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/05 00:09:21 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/05 02:08:31 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void		camera_parsing(int fd, t_camera *cam)
 	{
 		if (line[0] == '\0')
 			break ;
-		if (!(tab = ft_strsplit(line, ':')))
-				ft_error("Parsing error\n");
+		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
+			ft_error("Error parse word\n");
 		if (ft_strcmp(tab[0], "\tposition.x") == 0)
 			cam->cam_pos[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0], "\tposition.y") == 0)
