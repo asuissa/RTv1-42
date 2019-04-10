@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/05 02:10:58 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/10 03:59:43 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	init_cylender(t_cylender *cylender)
 	cylender->line_vector[2] = 0;
 	norm_vector(cylender->line_vector);
 	cylender->radius = 1;
-	cylender->color = 0x00FFFFFF;
-	cylender->code = 4;
 }
 
 t_cylender	*cylender_parsing(int fd, t_camera *cam)
@@ -40,8 +38,8 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 		printf("line => %s\n", line);
 		if (line[0] == '\0')
 			break;
-		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
-			ft_error("Error parse word\n");
+		if(!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
+			ft_error("error parse word\n");
 		if (ft_strcmp(tab[0],"\tposition.x") == 0)
 			cylender->origin[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
@@ -57,11 +55,19 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 		else if (ft_strcmp(tab[0],"\tradius") == 0)
 			cylender->radius = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
-			cylender->color = ft_atoi_hexa(tab[1]);
+			cylender->attributes.color = ft_atoi_hexa(tab[1]);
+		else if (ft_strcmp(tab[0],"\tambient coeff") == 0)
+			cylender->attributes.ambient_coeff = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\tdiffuse coeff") == 0)
+			cylender->attributes.diffuse_coeff = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\tspecular coeff") == 0)
+			cylender->attributes.specular_coeff = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\tshininess") == 0)
+			cylender->attributes.shininess = ft_atoi_double(tab[1]);
 		else
 		{
 			ft_free_parse(tab, line);
-			ft_error("parse cylinder error\n");
+			ft_error("parse cylender error\n");
 		}
 		ft_free_parse(tab, line);
 	}

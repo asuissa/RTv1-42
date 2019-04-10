@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 09:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 15:32:32 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/09 02:55:20 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void		hit_sphere(double ray_vector[3],
 			tmp[0] = cam_center[0] + (ratio * ray_vector[0]);
 			tmp[1] = cam_center[1] + (ratio * ray_vector[1]);
 			tmp[2] = cam_center[2] + (ratio * ray_vector[2]);
-			if (compute_hit_point(hit_point, tmp, cam_center, sphere->color))
+			if (compute_hit_point(hit_point, tmp, cam_center, sphere->attributes))
 			{
 				normal_sphere(sphere->center_relative, hit_point);
 				hit_point->obj = data;

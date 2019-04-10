@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/05 02:12:17 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/10 02:57:34 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,34 @@
 
 void		init_light(t_light *light)
 {
-	light->specular = 0.9;
-	light->diffuse_color = 0xFFFFFF;
-	light->ambient = 0.3;
-	light->pos[0] = -1.5;
-	light->pos[1] = 0;
-	light->pos[2] = 0;
+	int	i;
+	
+	i = -1;
+	while (++i < 3)
+	{
+		light->pos[i] = 0;
+		light->light_angle[i] = 0;;
+	}	
 	light->direction[0] = 0;
 	light->direction[1] = 0;
 	light->direction[2] = 1;
-	light->size = 0.5;
+	light->color = 0xFFFFFF;
+	light->power = 10000.0;
 	light->next = NULL;
+	light->aperture = cos(M_PI);
 }
 
 void	get_rgb_light(t_light *light)
 {
 	int		color;
 
-	color = light->diffuse_color;
+	color = light->color;
 
-	light->diffuse_blue = (color % (16 * 16));
+	light->blue = (double)(color % (16 * 16));
 	color = color / (16 * 16);
-	light->diffuse_green = (color % (16 * 16));
+	light->green = (double)(color % (16 * 16));
 	color = color / (16 * 16);
-	light->diffuse_red = (color % (16 * 16));
+	light->red = (double)(color % (16 * 16));
 	color = color / (16 * 16);
 }
 
@@ -53,27 +57,25 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 		if (line[0] == '\0')
 			break;
 		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
-			ft_error("Error parse word\n");
-		if (ft_strcmp(tab[0],"\tposition.x") == 0)
+			ft_error("error parse word\n");
+		if (ft_strcmp(tab[0], "\tposition.x") == 0)
 			light->pos[0] = ft_atoi_double(tab[1]);	
-		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
+		else if (ft_strcmp(tab[0], "\tposition.y") == 0)
 			light->pos[1] = ft_atoi_double(tab[1]);	
-		else if (ft_strcmp(tab[0],"\tposition.z") == 0)
+		else if (ft_strcmp(tab[0], "\tposition.z") == 0)
 			light->pos[2] = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0],"\tangle.x") == 0)
-			light->light_angle[0] = (ft_atoi_double(tab[1]) * M_PI ) / 180;
-		else if (ft_strcmp(tab[0],"\tangle.y") == 0)
-			light->light_angle[1] = (ft_atoi_double(tab[1]) * M_PI ) / 180;
-		else if (ft_strcmp(tab[0],"\tangle.z") == 0)
-			light->light_angle[2] = (ft_atoi_double(tab[1]) * M_PI ) / 180;
-		else if (ft_strcmp(tab[0],"\tambient") == 0)
-			light->ambient = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0],"\tspecular") == 0)
-			light->specular = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0],"\tdiffuse_color") == 0)
-			light->diffuse_color = ft_atoi_hexa(tab[1]);
-		else if (ft_strcmp(tab[0],"\tsize") == 0)
-			light->size = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0], "\tangle.x") == 0)
+			light->light_angle[0] = (ft_atoi_double(tab[1]) * M_PI ) / 180.0;
+		else if (ft_strcmp(tab[0], "\tangle.y") == 0)
+			light->light_angle[1] = (ft_atoi_double(tab[1]) * M_PI ) / 180.0;
+		else if (ft_strcmp(tab[0], "\tangle.z") == 0)
+			light->light_angle[2] = (ft_atoi_double(tab[1]) * M_PI ) / 180.0;
+		else if (ft_strcmp(tab[0], "\taperture") == 0)
+			light->aperture = cos((ft_atoi_double(tab[1]) * M_PI ) / 180.0);
+		else if (ft_strcmp(tab[0], "\tcolor") == 0)
+			light->color = ft_atoi_hexa(tab[1]);
+		else if (ft_strcmp(tab[0], "\tpower") == 0)
+			light->power = ft_atoi_double(tab[1]);
 		else
 		{
 			ft_free_parse(tab, line);

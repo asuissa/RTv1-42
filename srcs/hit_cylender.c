@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 11:58:18 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 15:33:54 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/09 02:56:19 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		hit_cylender(double ray_vector[3],
 			tmp[0] = cam_center[0] + ratio * ray_vector[0];
 			tmp[1] = cam_center[1] + ratio * ray_vector[1];
 			tmp[2] = cam_center[2] + ratio * ray_vector[2];
-			if (compute_hit_point(hit_point, tmp, cam_center, cylender->color))
+			if (compute_hit_point(hit_point, tmp, cam_center, cylender->attributes))
 			{
 				normal_cylender(cylender, hit_point);
 				hit_point->obj = data;

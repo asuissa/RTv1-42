@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:31:44 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 17:00:37 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/10 03:57:47 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		init_hit_point(t_hit *hit_point)
 	hit_point->normal[0] = 0;
 	hit_point->normal[1] = 0;
 	hit_point->normal[2] = 0;
-	hit_point->alpha = 0;
 	hit_point->red = 0;
 	hit_point->green = 0;
 	hit_point->blue = 0;
@@ -30,7 +29,7 @@ void		init_hit_point(t_hit *hit_point)
 }
 
 int			compute_hit_point(t_hit *hit_point, double tmp[3],
-								double cam_center[3], int color)
+								double cam_center[3], t_attributes attributes)
 {
 	if (hit_point->hit > 0)
 	{
@@ -41,7 +40,11 @@ int			compute_hit_point(t_hit *hit_point, double tmp[3],
 			hit_point->coord[1] = tmp[1];
 			hit_point->coord[2] = tmp[2];
 			hit_point->hit = 1;
-			hit_point->color = color;
+			hit_point->color = attributes.color;
+			hit_point->ambient_coeff = attributes.ambient_coeff;
+			hit_point->diffuse_coeff = attributes.diffuse_coeff;
+			hit_point->specular_coeff = attributes.specular_coeff;
+			hit_point->shininess = attributes.shininess;
 			return (1);
 		}
 		return (0);
@@ -52,7 +55,11 @@ int			compute_hit_point(t_hit *hit_point, double tmp[3],
 		hit_point->coord[1] = tmp[1];
 		hit_point->coord[2] = tmp[2];
 		hit_point->hit = 1;
-		hit_point->color = color;
+		hit_point->color = attributes.color;
+		hit_point->ambient_coeff = attributes.ambient_coeff;
+		hit_point->diffuse_coeff = attributes.diffuse_coeff;
+		hit_point->specular_coeff = attributes.specular_coeff;
+		hit_point->shininess = attributes.shininess;
 		return (1);
 	}
 }
@@ -81,8 +88,12 @@ int			trace_ray(double pixel_center[3], t_env *env)
 						tmp->object, &hit_point);
 		tmp = tmp->next;
 	}
-	compute_color(env->light, &hit_point, ray_vector, env->elem);
-	return (hit_point.color);
+	if (hit_point.hit)
+		compute_color(&hit_point, ray_vector, env);
+	else
+		return (0);
+	return (SDL_MapRGB(env->screen->format, (int)(hit_point.red),
+						(int)(hit_point.green), (int)(hit_point.blue)));
 }
 
 void		*ray_casting(void *arg)
@@ -103,7 +114,7 @@ void		*ray_casting(void *arg)
 		while (pixel_center[0] <= (env->cam.vp_center[0]
 					+ env->cam.vp_dim - ((env->cam.pas) / 2.0)))
 		{
-			((int*)env->screen->pixels)[k++] = trace_ray(pixel_center, env);
+			env->raw_pixels[k++] = trace_ray(pixel_center, env);
 			pixel_center[0] += (env->cam.pas);
 		}
 		pixel_center[1] -= (env->cam.pas);

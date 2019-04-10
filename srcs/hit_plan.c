@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 11:56:01 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 15:32:17 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/09 02:55:34 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		hit_plan(double ray_vector[3], double cam_center[3],
 			i = -1;
 			while (++i < 3)
 				tmp[i] = cam_center[i] + ratio * ray_vector[i];
-			if (compute_hit_point(hit_point, tmp, cam_center, plan->color))
+			if (compute_hit_point(hit_point, tmp, cam_center, plan->attributes))
 			{
 				normal_plan(plan->normal_relative, hit_point);
 				hit_point->obj = data;

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 23:41:59 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 17:13:14 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/10 03:58:50 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@ void	get_rgb_hit_point(t_hit *hit_point)
 
 	color = hit_point->color;
 
-	hit_point->blue = (color % (16 * 16));
+	hit_point->blue = (double)(color % (16 * 16));
 	color = color / (16 * 16);
-	hit_point->green = (color % (16 * 16));
+	hit_point->green = (double)(color % (16 * 16));
 	color = color / (16 * 16);
-	hit_point->red = (color % (16 * 16));
-	color = color / (16 * 16);
-	hit_point->alpha = (color % (16 * 16));
+	hit_point->red = (double)(color % (16 * 16));
 	color = color / (16 * 16);
 }
 
-int		is_shaded(t_light *light, double light_ray[3], t_elem *elem, t_hit *hit_point)
+int		not_shaded(t_light *light, double light_ray[3], t_elem *elem, t_hit *hit_point)
 {
 	t_hit	shade_hit;
 	t_elem	*tmp;
@@ -47,7 +45,7 @@ int		is_shaded(t_light *light, double light_ray[3], t_elem *elem, t_hit *hit_poi
 		reversed_light[i] = -light_ray[i];
 	}
 	norm_vector(vector);
-	if (dot_product(reversed_light, light->direction_relative) < cos((10.0 * M_PI) / 180))
+	if (dot_product(reversed_light, light->direction_relative) < light->aperture)
 		return (0);
 	tmp = elem;
 	while (tmp)
@@ -60,114 +58,128 @@ int		is_shaded(t_light *light, double light_ray[3], t_elem *elem, t_hit *hit_poi
 	return (1);
 }
 
-void	compute_color(t_light *light, t_hit *hit_point, double cam_vector[3], t_elem *elem)
+void	compute_reflected_ray(double reflected[3], double point_normal[3], double light_vector[3])
 {
-	t_light	*tmp;
+	int		i;
 	double	stock;
-	int 	i;
-	double	diffuse_att;
-	double	specular_att;
-	double	light_vector[3];
-	double	reflected[3];
-	double	final_res[4];
-	double	tmp_res[3];
-	double	light_intensity;
-	double	light_diff_red;
-	double	light_diff_green;
-	double	light_diff_blue;
-	double 	coeff_spec_r;
-	double 	coeff_spec_g;
-	double 	coeff_spec_b;
-	double 	coeff_diff_r;
-	double 	coeff_diff_g;
-	double 	coeff_diff_b;
-	double	shaded;
+
+	stock = dot_product(light_vector, point_normal);
+	i = -1;
+	while (++i < 3)	
+		reflected[i] = (2 * point_normal[i] * stock) - light_vector[i];
+	norm_vector(reflected);
+}
+
+double	compute_light_intensity(double point[3], double light[3], double power)
+{
+	double		light_intensity;
+
+	light_intensity =  1 - (point_distance(point, light) / power);
+	if (light_intensity < 0)
+		return (0);
+	return (light_intensity);
+}
+
+void	add_diffuse(double res[3], double light_vector[3], t_light *light, t_hit *hit_point)
+{
+	double		light_intensity;
+	double		diffuse_att;
+	double		light_red;
+	double		light_green;
+	double		light_blue;
+
+	diffuse_att = dot_product(light_vector, hit_point->normal);
+	if (diffuse_att > 0)
+	{
+		light_intensity =  compute_light_intensity(hit_point->coord, light->pos_relative, light->power);
+		light_red = diffuse_att * light->red * light_intensity;
+		light_green = diffuse_att * light->green * light_intensity;	
+		light_blue = diffuse_att * light->blue * light_intensity;
+		res[0] += light_red * (hit_point->red / 255.0) * hit_point->diffuse_coeff;
+		res[1] += light_green * (hit_point->green / 255.0) * hit_point->diffuse_coeff;
+		res[2] += light_blue * (hit_point->blue / 255.0) * hit_point->diffuse_coeff;
+	}
+}
+
+void	add_specular(double res[3], double angle, t_light *light, t_hit *hit_point)
+{
+	double		light_intensity;
+	double		specular_att;
+
+	specular_att = pow(angle, hit_point->shininess);
+	light_intensity = compute_light_intensity(hit_point->coord, light->pos_relative, light->power);
+	res[0] += (hit_point->specular_coeff * (double)(light->red) * specular_att * light_intensity);
+	res[1] += (hit_point->specular_coeff * (double)(light->green) * specular_att * light_intensity);
+	res[2] += (hit_point->specular_coeff * (double)(light->blue) * specular_att * light_intensity);
+}
+
+void	add_ambient(double res[3], t_hit *hit_point)
+{
+	if (hit_point->red <= 255.0)
+		res[0] = hit_point->ambient_coeff * hit_point->red;
+	else
+		res[0] = hit_point->ambient_coeff * 255.0;
+	if (hit_point->green <= 255.0)
+		res[1] = hit_point->ambient_coeff * hit_point->green;
+	else
+		res[1] = hit_point->ambient_coeff * 255.0;
+	if (hit_point->blue <= 255.0)
+		res[2] = hit_point->ambient_coeff * hit_point->blue;
+	else
+		res[2] = hit_point->ambient_coeff * 255.0;	
+}
+
+void	normalize_color(t_hit *hit_point, double res[3])
+{
+	int		i;
 
 	i = -1;
-	while(++i < 3)
-		cam_vector[i] *= (-1.0);
-		
-	get_rgb_hit_point(hit_point);
-	final_res[0] = 0;
-	final_res[1] = 0.1 * 255.0;
-	final_res[2] = 0.1 * 255.0;
-	final_res[3] = 0.1 * 255.0;
+	while (++i < 3)
+	{
+		if (res[i] > 255.0)
+			res[i] = 255.0;
+	}
+	hit_point->red = round(res[0]);
+	hit_point->green = round(res[1]);
+	hit_point->blue = round(res[2]);
+}
 
-	tmp = light;
+void	light_contribution(double res[3], double cam_vector[3], t_env *env, t_hit *hit_point)
+{
+	int		i;
+	double	light_vector[3];
+	double	reflected[3];
+	double	stock;
+	t_light	*tmp;
+
+	tmp = env->light;
 	while (tmp)
 	{
-		
-		diffuse_att = 0.0;
-		specular_att = 0.0;
 		i = -1;
 		while(++i < 3)
 			light_vector[i] = (tmp->pos_relative[i] - hit_point->coord[i]);
 		norm_vector(light_vector);
-	
-		i = -1;
-		while (++i < 3)	
-			reflected[i] = 2 * hit_point->normal[i] * dot_product(light_vector, hit_point->normal) - light_vector[i];
-		norm_vector(reflected);
-	
-		shaded = is_shaded(tmp, light_vector, elem, hit_point);
-
-		if ((stock = dot_product(light_vector, hit_point->normal)) < 0 || !(shaded))
-			diffuse_att += 0;
-		else
-			diffuse_att = stock ;
-
-		if ((stock = dot_product(cam_vector, reflected)) < 0 || !(shaded) || (diffuse_att == 0))
-			specular_att += 0;
-		else
-			specular_att += stock;
-		specular_att = pow(specular_att, 100);
-		
-		light_intensity =  1 - (point_distance(hit_point->coord, tmp->pos_relative) / 10000.0);
-		light_diff_red = diffuse_att * (double)(tmp->diffuse_red) * light_intensity;
-		light_diff_green = diffuse_att * (double)(tmp->diffuse_green) * light_intensity;	
-		light_diff_blue = diffuse_att * (double)(tmp->diffuse_blue) * light_intensity;
-	
-		coeff_diff_r = 0.6;
-		coeff_diff_g = 0.6;
-		coeff_diff_b = 0.6;
-
-	
-		if (hit_point->red > light_diff_red)
-			tmp_res[0] = light_diff_red * coeff_diff_r;
-		else
-			tmp_res[0] = (double)(hit_point->red) * coeff_diff_r;
-		if (hit_point->green > light_diff_green)
-			tmp_res[1] = light_diff_green * coeff_diff_g;
-		else
-			tmp_res[1] = (double)(hit_point->green) * coeff_diff_g;
-		if (hit_point->blue > light_diff_blue)
-			tmp_res[2] = light_diff_blue * coeff_diff_b;
-		else
-			tmp_res[2] = (double)(hit_point->blue) * coeff_diff_b;
-
-
-		coeff_spec_r = 0.3;
-		coeff_spec_g = 0.3;
-		coeff_spec_b = 0.3;
-
-		tmp_res[0] += (coeff_spec_r * 255.0 * specular_att);
-		tmp_res[1] += (coeff_spec_g * 255.0 * specular_att);
-		tmp_res[2] += (coeff_spec_b * 255.0 * specular_att);
-
-		i = -1;
-		while (++i < 3)
-		{
-			final_res[i + 1] += tmp_res[i];
-			if (final_res[i + 1] > 255.0)
-				final_res[i + 1] = 255.0;
-		}
+		if (not_shaded(tmp, light_vector, env->elem, hit_point) > 0)
+			{
+				add_diffuse(res, light_vector, tmp, hit_point);
+				compute_reflected_ray(reflected, hit_point->normal, light_vector);
+				if ((stock = dot_product(cam_vector, reflected)) > 0)
+					add_specular(res, stock, tmp, hit_point);
+			}
 		tmp = tmp->next;
 	}
+}
 
-	
-	hit_point->color = 0;
-	hit_point->color |= (int)(final_res[0]) << 24;
-	hit_point->color |= (int)(final_res[1]) << 16;
-	hit_point->color |= (int)(final_res[2]) << 8;
-	hit_point->color |= (int)(final_res[3]);
+void	compute_color(t_hit *hit_point, double cam_vector[3], t_env *env)
+{
+	double	res[3];
+	int i;
+
+	get_rgb_hit_point(hit_point);
+	i = -1;
+	while(++i < 3)
+		cam_vector[i] *= (-1.0);
+	add_ambient(res, hit_point);
+	light_contribution(res, cam_vector, env, hit_point);
+	normalize_color(hit_point, res);
 }

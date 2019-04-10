@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 01:36:56 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/05 02:10:08 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/10 05:31:37 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ void	init_cone(t_cone *cone)
 	cone->vector[1] = 0;
 	cone->vector[2] = 0;
 	norm_vector(cone->vector);
+	cone->rotation[0] = 0;
+	cone->rotation[1] = 0;
+	cone->rotation[2] = 0;
 	cone->aperture = (25 * M_PI) / 180;
-	cone->color = 0x00FF0000;
-	cone->code = 3;
 }
 
 t_cone	*cone_parsing(int fd, t_camera *cam)
@@ -41,7 +42,7 @@ t_cone	*cone_parsing(int fd, t_camera *cam)
 		if (line[0] == '\0')
 			break;
 		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
-			ft_error("Error parse word\n");
+			ft_error("error parse word\n");
 		if (ft_strcmp(tab[0],"\tposition.x") == 0)
 			cone->origin[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tposition.y") == 0)
@@ -57,14 +58,35 @@ t_cone	*cone_parsing(int fd, t_camera *cam)
 		else if (ft_strcmp(tab[0],"\taperture") == 0)
 			cone->aperture = (ft_atoi_double(tab[1]) * M_PI) / 180;
 		else if (ft_strcmp(tab[0],"\tcolor") == 0)
-			cone->color = ft_atoi_hexa(tab[1]);
+			cone->attributes.color = ft_atoi_hexa(tab[1]);
+		else if (ft_strcmp(tab[0],"\tambient coeff") == 0)
+			cone->attributes.ambient_coeff = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\tdiffuse coeff") == 0)
+			cone->attributes.diffuse_coeff = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\tspecular coeff") == 0)
+			cone->attributes.specular_coeff = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\tshininess") == 0)
+			cone->attributes.shininess = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\ttranslation.x") == 0)
+			cone->origin[0] += ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\ttranslation.y") == 0)
+			cone->origin[1] += ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\ttranslation.z") == 0)
+			cone->origin[2] += ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\trotation.x") == 0)
+			cone->rotation[0] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+		else if (ft_strcmp(tab[0],"\trotation.y") == 0)
+			cone->rotation[1] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+		else if (ft_strcmp(tab[0],"\trotation.z") == 0)
+			cone->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 		else
 		{
 			ft_free_parse(tab, line);
-			ft_error("parse cone error\n");
+			ft_error("parse cone error");
 		}
 		ft_free_parse(tab, line);
 	}
+	rotate(cone->vector, cone->rotation);
 	i = -1;
 	while (++i < 3)
 	{

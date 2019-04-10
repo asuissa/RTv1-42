@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 10:29:10 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 15:32:55 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/09 02:55:57 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		hit_cone(double ray_vector[3],
 		tmp[2] = cam_center[2] + ratio * ray_vector[2];
 		if (test_opposite_cone(tmp, *cone))
 		{
-			if (compute_hit_point(hit_point, tmp, cam_center, cone->color))
+			if (compute_hit_point(hit_point, tmp, cam_center, cone->attributes))
 			{
 				normal_cone(cone, hit_point);
 				hit_point->obj = data;

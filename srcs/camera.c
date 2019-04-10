@@ -6,37 +6,22 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/05 02:08:31 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/10 02:42:06 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void		ft_free_parse(char **tab, char *line)
+void	init_cam(t_camera *cam)
 {
-	int	i;
+	int i;
 
-	i = 0;
-	while (tab[i])
+	i = -1;
+	while (++i < 3)
 	{
-		free(tab[i]);
-		i++;
+		cam->cam_pos[i] = 0;
+		cam->cam_pos_relative[i] = 0;
 	}
-	free(tab);
-	free(line);
-}
-
-void		ft_error(char *msg)
-{
-	ft_putstr(msg);
-	exit(1);
-}
-
-void		init_cam(t_camera *cam)
-{
-	cam->cam_pos_relative[0] = 0;
-	cam->cam_pos_relative[1] = 0;
-	cam->cam_pos_relative[2] = 0;
 	cam->vp_center[0] = 0;
 	cam->vp_center[1] = 0;
 	cam->vp_center[2] = 1;
@@ -45,7 +30,7 @@ void		init_cam(t_camera *cam)
 	cam->pas = cam->vp_dim / ((double)(SCREEN_WIDTH) / 2.0);
 }
 
-void		camera_parsing(int fd, t_camera *cam)
+void	camera_parsing(int fd, t_camera *cam)
 {
 	char	*line;
 	char	**tab;
@@ -56,7 +41,7 @@ void		camera_parsing(int fd, t_camera *cam)
 		if (line[0] == '\0')
 			break ;
 		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
-			ft_error("Error parse word\n");
+			ft_error("error parse word\n");
 		if (ft_strcmp(tab[0], "\tposition.x") == 0)
 			cam->cam_pos[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0], "\tposition.y") == 0)

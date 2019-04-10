@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/05 00:07:38 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/10 02:26:23 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int			main(int ac, char **av)
 				return (sdl_has_fcked_up(&env));
 			else
 			{
-				env.screen = SDL_GetWindowSurface(env.window);
+				env.screen = SDL_GetWindowSurface(env.window);	
 				if (main_loop(&env) < 0)
 					return (sdl_has_fcked_up(&env));
 			}
