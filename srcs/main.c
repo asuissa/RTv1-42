@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 02:26:23 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/10 22:22:35 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int			main_loop(t_env *env)
 					env->cam.cam_pos[1] += 1.0;
 				if (event.key.keysym.sym == SDLK_q)
 					env->cam.cam_pos[1] -= 1.0;
-				
 				if (event.key.keysym.sym == SDLK_e)
 					env->cam.cam_angle[0] += (M_PI / 180.0);
 				if (event.key.keysym.sym == SDLK_d)
@@ -73,15 +72,12 @@ int			main_loop(t_env *env)
 					env->cam.cam_angle[2] += (M_PI / 180.0);
 				if (event.key.keysym.sym == SDLK_g)
 					env->cam.cam_angle[2] -= (M_PI / 180.0);
-
-
 				if (event.key.keysym.sym != SDLK_ESCAPE)
 				{
 					update_scene(env);
 					access_surface_pixels(env);
 					SDL_UpdateWindowSurface(env->window); 
 				}
-
 			}
 		}
 	}

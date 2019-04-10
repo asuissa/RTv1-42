@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 02:33:37 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 02:38:21 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/10 22:05:28 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ void		ft_free_parse(char **tab, char *line)
 	i = -1;
 	while (tab[++i])
 		free(tab[i]);
-	free(tab);
-	free(line);
+	if (tab)
+		free(tab);
+	tab = NULL;
+	if (line)
+		free(line);
+	line = NULL;
 }
 
 void		ft_error(char *msg)
