@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 22:22:35 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/11 01:53:05 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		quit_sdl(SDL_Window *window)
 		SDL_DestroyWindow(window);
 	SDL_Quit();
 }
-
+// salut les potes
 int			sdl_has_fcked_up(t_env *env)
 {
 /*	TO DO: create different functions according to  error message 
