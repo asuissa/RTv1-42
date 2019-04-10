@@ -36,7 +36,6 @@ cylender:
 	radius: 1.5
 	color: 606060
 
-
 cylender:
 	position.x: 10
 	position.y: 0
@@ -46,8 +45,6 @@ cylender:
 	vector.z: 0
 	radius: 1.5
 	color: 606060
-
-
 
 cylender:
 	position.x: -10
@@ -59,8 +56,6 @@ cylender:
 	radius: 1.5
 	color: 606060
 
-
-
 cylender:
 	position.x: 10
 	position.y: 0
@@ -71,16 +66,12 @@ cylender:
 	radius: 1.5
 	color: 606060
 
-
-
 sphere:
 	position.x: -10
 	position.y: -10
 	position.z: 2
 	radius: 2.5
 	color: 606060
-
-
 
 sphere:
 	position.x: -10
@@ -89,8 +80,6 @@ sphere:
 	radius: 2.5
 	color:  606060
 
-
-
 sphere:
 	position.x: 10
 	position.y: -10
@@ -98,16 +87,12 @@ sphere:
 	radius: 2.5
 	color:  606060
 
-
-
 sphere:
 	position.x: 10
 	position.y: 10
 	position.z: 2
 	radius: 2.5
 	color:  606060
-
-
 
 sphere:
 	position.x: -10
@@ -116,15 +101,12 @@ sphere:
 	radius: 2.5
 	color: 606060
 
-
-
 sphere:
 	position.x: -10
 	position.y: 10
 	position.z: 22
 	radius: 2.5
 	color: 606060
-
 
 sphere:
 	position.x: 10
@@ -133,14 +115,12 @@ sphere:
 	radius: 2.5
 	color: 606060
 
-
 sphere:
 	position.x: 10
 	position.y: 10
 	position.z: 22
 	radius: 2.5
 	color: 606060
-
 
 sphere:
 	position.x: 0

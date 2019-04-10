@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 02:42:06 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/10 20:16:07 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,14 @@ void	camera_parsing(int fd, t_camera *cam)
 			cam->cam_pos[1] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0], "\tposition.z") == 0)
 			cam->cam_pos[2] = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0], "\tangle.x") == 0)
+		else if (ft_strcmp(tab[0], "\tangle.x") == 0
+				&& (ft_atoi_double(tab[1]) <= 180))
 			cam->cam_angle[0] = (ft_atoi_double(tab[1]) * M_PI) / 180;
-		else if (ft_strcmp(tab[0], "\tangle.y") == 0)
+		else if (ft_strcmp(tab[0], "\tangle.y") == 0
+				&& (ft_atoi_double(tab[1]) <= 180))
 			cam->cam_angle[1] = (ft_atoi_double(tab[1]) * M_PI) / 180;
-		else if (ft_strcmp(tab[0], "\tangle.z") == 0)
+		else if (ft_strcmp(tab[0], "\tangle.z") == 0
+				&& (ft_atoi_double(tab[1]) <= 180))
 			cam->cam_angle[2] = (ft_atoi_double(tab[1]) * M_PI) / 180;
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 02:57:34 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/10 19:55:39 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
 			ft_error("error parse word\n");
 		if (ft_strcmp(tab[0], "\tposition.x") == 0)
-			light->pos[0] = ft_atoi_double(tab[1]);	
+			light->pos[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0], "\tposition.y") == 0)
 			light->pos[1] = ft_atoi_double(tab[1]);	
 		else if (ft_strcmp(tab[0], "\tposition.z") == 0)
@@ -76,7 +76,10 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 			light->color = ft_atoi_hexa(tab[1]);
 		else if (ft_strcmp(tab[0], "\tpower") == 0)
 			light->power = ft_atoi_double(tab[1]);
-		else
+		else if ((ft_strcmp(tab[0], "\tdiffuse_color"))
+				&& (ft_strcmp(tab[0], "\tspecular"))
+				&& (ft_strcmp(tab[0], "\tambient"))
+				&& (ft_strcmp(tab[0], "\treflective")))
 		{
 			ft_free_parse(tab, line);
 			ft_error("parse light error\n");
