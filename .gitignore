@@ -1,4 +1,6 @@
-./objs
+objs
+objs/*.o
 .DS_Store
-./libft/*.o
+libft/*.o
 rtv1
+SDL2_utils
