@@ -1,0 +1,4 @@
+./objs
+.DS_Store
+./libft/*.o
+rtv1
