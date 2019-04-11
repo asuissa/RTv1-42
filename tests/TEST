@@ -5,15 +5,3 @@ camera:
 	angle.x: 90
 	angle.y: 0
 	angle.z: 0
-
-light:
-	position.x: 0
-	position.y: 5
-	position.z: 2
-	angle.x: 0
-	angle.y: 0
-	angle.z: 0
-	diffuse_color: FFFFFF
-
-
-

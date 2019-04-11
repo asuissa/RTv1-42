@@ -1,23 +1,23 @@
 build/SDL_drawline.lo: \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_drawline.c \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../SDL_internal.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi_overrides.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/SDL_drawline.c \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/../../SDL_internal.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/../../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_platform.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/begin_code.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/close_code.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_draw.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/../../video/SDL_blit.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_cpuinfo.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_stdinc.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_config.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_endian.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_surface.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_pixels.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_rect.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_error.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_rwops.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/include/SDL_blendmode.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_drawline.h \
-  /Users/asuissa/Documents/rtv1/SDL2-2.0.9/src/render/software/SDL_drawpoint.h
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_platform.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/begin_code.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/close_code.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/SDL_draw.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/../../video/SDL_blit.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_cpuinfo.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_stdinc.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_config.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_endian.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_surface.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_pixels.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_rect.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_error.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_rwops.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/include/SDL_blendmode.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/SDL_drawline.h \
+  /Users/badhont/Work_in_progress/rtv1/SDL2-2.0.9/src/render/software/SDL_drawpoint.h
