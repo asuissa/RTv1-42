@@ -36,7 +36,7 @@ double			ft_atoi_double(char *str)
 		sign = str[i++];
 	res = 0;
 	if (ft_isdigit(str[i]) == 0)
-		return (res);
+		ft_error("Error atoi\n");//return (res);
 	while (ft_isdigit(str[i]) != 0)
 		res = res * 10 + str[i++] - 48;
 	if (str[i] == '.')
@@ -45,6 +45,8 @@ double			ft_atoi_double(char *str)
 		while (ft_isdigit(str[++i]) != 0)
 			res += (str[i] - 48) / pow(10, exp++);
 	}
+	if (!res || (i - (avoid_spacing_char(str)) >= 307))
+		ft_error("Error atoi\n"); //here on corrigera ici si besoin
 	if (sign == '-')
 		return (-res);
 	return (res);

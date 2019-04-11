@@ -76,10 +76,7 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 			light->color = ft_atoi_hexa(tab[1]);
 		else if (ft_strcmp(tab[0], "\tpower") == 0)
 			light->power = ft_atoi_double(tab[1]);
-		else if ((ft_strcmp(tab[0], "\tdiffuse_color"))
-				&& (ft_strcmp(tab[0], "\tspecular"))
-				&& (ft_strcmp(tab[0], "\tambient"))
-				&& (ft_strcmp(tab[0], "\treflective")))
+		else
 		{
 			ft_free_parse(tab, line);
 			ft_error("parse light error\n");
