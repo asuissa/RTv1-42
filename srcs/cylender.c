@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/12 08:49:09 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 09:17:48 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	init_cylender(t_cylender *cylender)
 {
-	cylender->origin[0] = 0;
-	cylender->origin[1] = 0;
-	cylender->origin[2] = 0;
-	cylender->line_vector[0] = 0;
-	cylender->line_vector[1] = 0;
-	cylender->line_vector[2] = 0;
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		cylender->origin[i] = 0;
+		cylender->line_vector[i] = 0;
+		cylender->rotation[i] = 0;
+	}
 	norm_vector(cylender->line_vector);
 	cylender->radius = 1;
 	cylender->attributes.shininess = 100;
@@ -71,7 +74,12 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 			cylender->origin[1] += ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\ttranslation.z") == 0)
 			cylender->origin[2] += ft_atoi_double(tab[1]);
-
+		else if (ft_strcmp(tab[0],"\trotation.x") == 0)
+			cylender->rotation[0] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+		else if (ft_strcmp(tab[0],"\trotation.y") == 0)
+			cylender->rotation[1] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+		else if (ft_strcmp(tab[0],"\trotation.z") == 0)
+			cylender->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 		else
 		{
 			ft_free_parse(tab, line);
@@ -79,6 +87,7 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 		}
 		ft_free_parse(tab, line);
 	}
+	rotate(cylender->line_vector, cylender->rotation);
 	i = -1;
 	while (++i < 3)
 	{
