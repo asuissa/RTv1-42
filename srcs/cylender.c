@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/12 07:53:15 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 08:49:09 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 			cylender->attributes.specular_coeff = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\tshininess") == 0)
 			cylender->attributes.shininess = ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\ttranslation.x") == 0)
+			cylender->origin[0] += ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\ttranslation.y") == 0)
+			cylender->origin[1] += ft_atoi_double(tab[1]);
+		else if (ft_strcmp(tab[0],"\ttranslation.z") == 0)
+			cylender->origin[2] += ft_atoi_double(tab[1]);
+
 		else
 		{
 			ft_free_parse(tab, line);
