@@ -49,6 +49,7 @@ sphere:
 	specular coeff: 0.3
 	shininess: 100
 	color: FFFFFF
+	rotation.z: 180
 
 plan:
 	position.x: 0
