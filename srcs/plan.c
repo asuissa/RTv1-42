@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/12 06:34:17 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 07:21:45 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void		init_plan(t_plan *plan)
 	plan->rotation[1] = 0;
 	plan->rotation[2] = 0;
 	norm_vector(plan->normal);
+	plan->attributes.shininess = 100;
 }
 
 t_plan		*plan_parsing(int fd, t_camera *cam)

@@ -62,5 +62,3 @@ plan:
 	diffuse coeff: 0.6
 	specular coeff: 0.3
 	shininess: 100
-	rotation.x: 90
-	translation.z: 10
