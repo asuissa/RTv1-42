@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 05:01:09 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 05:59:55 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_plan		*plan_parsing(int fd, t_camera *cam)
 		}
 		ft_free_parse(tab, line);
 	}
+	rotate(plan->point, plan->rotation);
 	rotate(plan->normal, plan->rotation);
 	norm_vector(plan->normal);
 	i = -1;
