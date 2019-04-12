@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 01:36:56 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 05:31:37 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 09:26:32 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	init_cone(t_cone *cone)
 {
-	cone->origin[0] = 0;
-	cone->origin[1] = 0;
-	cone->origin[2] = 0;
-	cone->vector[0] = 0;
-	cone->vector[1] = 0;
-	cone->vector[2] = 0;
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		cone->origin[i] = 0;
+		cone->vector[i] = 0;
+		cone->rotation[i] = 0;
+	}
 	norm_vector(cone->vector);
-	cone->rotation[0] = 0;
-	cone->rotation[1] = 0;
-	cone->rotation[2] = 0;
 	cone->aperture = (25 * M_PI) / 180;
+	cone->attributes.shininess = 100;
 }
 
 t_cone	*cone_parsing(int fd, t_camera *cam)

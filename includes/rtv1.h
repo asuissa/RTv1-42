@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 05:13:33 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 08:47:41 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct		s_sphere
 	char			*type;
 	double			center[3];
 	double			center_relative[3];
+	double			rotation[3];
 	double			radius;
 	t_attributes	attributes;
 }					t_sphere;
