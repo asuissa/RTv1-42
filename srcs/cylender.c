@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 03:59:43 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 07:53:15 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_cylender(t_cylender *cylender)
 	cylender->line_vector[2] = 0;
 	norm_vector(cylender->line_vector);
 	cylender->radius = 1;
+	cylender->attributes.shininess = 100;
 }
 
 t_cylender	*cylender_parsing(int fd, t_camera *cam)
