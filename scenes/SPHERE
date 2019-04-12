@@ -15,7 +15,7 @@ light:
 	angle.z: 0
 	color: FF
 	power: 100000
-	aperture: 25
+	aperture: 180
 
 light:
 	position.x: -20
@@ -26,7 +26,7 @@ light:
 	angle.z: 0
 	color: FF00
 	power: 100000
-	aperture: 25
+	aperture: 180
 
 light:
 	position.x: 0
@@ -37,7 +37,7 @@ light:
 	angle.z: 0
 	color: FF0000
 	power: 100000
-	aperture: 25
+	aperture: 180
 
 sphere:
 	position.x: 0
