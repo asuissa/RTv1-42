@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 05:57:35 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/04 23:45:15 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/12 04:40:18 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ double			ft_atoi_double(char *str)
 	if (str[i] == '+' || str[i] == '-')
 		sign = str[i++];
 	res = 0;
-	if (ft_isdigit(str[i]) == 0)
+/*	if (ft_isdigit(str[i]) == 0)
 		ft_error("Error atoi\n");//return (res);
-	while (ft_isdigit(str[i]) != 0)
+*/	while (ft_isdigit(str[i]) != 0)
 		res = res * 10 + str[i++] - 48;
 	if (str[i] == '.')
 	{
@@ -45,9 +45,9 @@ double			ft_atoi_double(char *str)
 		while (ft_isdigit(str[++i]) != 0)
 			res += (str[i] - 48) / pow(10, exp++);
 	}
-	if (!res || (i - (avoid_spacing_char(str)) >= 307))
+/*	if (!res || (i - (avoid_spacing_char(str)) >= 307))
 		ft_error("Error atoi\n"); //here on corrigera ici si besoin
-	if (sign == '-')
+*/	if (sign == '-')
 		return (-res);
 	return (res);
 }

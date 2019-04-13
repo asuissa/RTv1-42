@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 04:31:19 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/12 07:46:12 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 void	init_sphere(t_sphere *sphere)
 {
+	int i;
+
 	sphere->type = "sphere";
-	sphere->center[0] = 0;
-	sphere->center[1] = 0;
-	sphere->center[2] = 0;
+	i = -1;
+	while ( ++i < 3)
+	{
+		sphere->center[i] = 0;
+		sphere->rotation[i] = 0;
+	}
 	sphere->radius = 1;	
 }
 
@@ -61,7 +66,12 @@ t_sphere	*sphere_parsing(int fd, t_camera *cam)
 			sphere->center[1] += ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0],"\ttranslation.z") == 0)
 			sphere->center[2] += ft_atoi_double(tab[1]);
-
+		else if (ft_strcmp(tab[0],"\trotation.x") == 0)
+			sphere->rotation[0] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+		else if (ft_strcmp(tab[0],"\trotation.y") == 0)
+			sphere->rotation[1] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+		else if (ft_strcmp(tab[0],"\trotation.z") == 0)
+			sphere->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 		else
 		{
 			ft_free_parse(tab, line);
