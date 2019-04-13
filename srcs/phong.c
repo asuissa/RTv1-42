@@ -6,25 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/14 23:41:59 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 03:58:50 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 11:36:05 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
-
-void	get_rgb_hit_point(t_hit *hit_point)
-{
-	int		color;
-
-	color = hit_point->color;
-
-	hit_point->blue = (double)(color % (16 * 16));
-	color = color / (16 * 16);
-	hit_point->green = (double)(color % (16 * 16));
-	color = color / (16 * 16);
-	hit_point->red = (double)(color % (16 * 16));
-	color = color / (16 * 16);
-}
 
 int		not_shaded(t_light *light, double light_ray[3], t_elem *elem, t_hit *hit_point)
 {

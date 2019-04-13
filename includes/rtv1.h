@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:55:36 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 11:37:03 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void			init_cone(t_cone *cone);
 void			init_cylender(t_cylender *cylender);
 void			init_hit_point(t_hit *hit_point);
 
+void			get_rgb_hit_point(t_hit *hit_point);
 int				compute_hit_point(t_hit *hit_point, double tmp[3],
 									double cam_center[3],
 									t_attributes attributes);

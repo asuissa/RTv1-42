@@ -6,11 +6,25 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 10:32:58 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:46:20 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 11:35:50 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+void	get_rgb_hit_point(t_hit *hit_point)
+{
+	int		color;
+
+	color = hit_point->color;
+
+	hit_point->blue = (double)(color % (16 * 16));
+	color = color / (16 * 16);
+	hit_point->green = (double)(color % (16 * 16));
+	color = color / (16 * 16);
+	hit_point->red = (double)(color % (16 * 16));
+	color = color / (16 * 16);
+}
 
 void		update_hitpoint(t_hit *hit_point,
 				double tmp[3], t_attributes attributes)
