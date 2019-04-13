@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/13 10:33:52 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/13 11:31:06 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS_BASENAME = main.c \
 	  maths_functions.c \
 	  parsing_functions.c \
 	  light.c \
-	  color.c \
+	  phong.c \
 	  camera.c \
 	  sphere.c \
 	  plan.c \
