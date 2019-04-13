@@ -6,11 +6,25 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 10:32:58 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:33:33 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 10:46:20 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+void		update_hitpoint(t_hit *hit_point,
+				double tmp[3], t_attributes attributes)
+{
+	hit_point->coord[0] = tmp[0];
+	hit_point->coord[1] = tmp[1];
+	hit_point->coord[2] = tmp[2];
+	hit_point->hit = 1;
+	hit_point->color = attributes.color;
+	hit_point->ambient_coeff = attributes.ambient_coeff;
+	hit_point->diffuse_coeff = attributes.diffuse_coeff;
+	hit_point->specular_coeff = attributes.specular_coeff;
+	hit_point->shininess = attributes.shininess;
+}
 
 void		init_hit_point(t_hit *hit_point)
 {
@@ -36,30 +50,14 @@ int			compute_hit_point(t_hit *hit_point, double tmp[3],
 		if (point_distance(tmp, cam_center)
 				< point_distance(hit_point->coord, cam_center))
 		{
-			hit_point->coord[0] = tmp[0];
-			hit_point->coord[1] = tmp[1];
-			hit_point->coord[2] = tmp[2];
-			hit_point->hit = 1;
-			hit_point->color = attributes.color;
-			hit_point->ambient_coeff = attributes.ambient_coeff;
-			hit_point->diffuse_coeff = attributes.diffuse_coeff;
-			hit_point->specular_coeff = attributes.specular_coeff;
-			hit_point->shininess = attributes.shininess;
+			update_hitpoint(hit_point, tmp, attributes);
 			return (1);
 		}
 		return (0);
 	}
 	else
 	{
-		hit_point->coord[0] = tmp[0];
-		hit_point->coord[1] = tmp[1];
-		hit_point->coord[2] = tmp[2];
-		hit_point->hit = 1;
-		hit_point->color = attributes.color;
-		hit_point->ambient_coeff = attributes.ambient_coeff;
-		hit_point->diffuse_coeff = attributes.diffuse_coeff;
-		hit_point->specular_coeff = attributes.specular_coeff;
-		hit_point->shininess = attributes.shininess;
+		update_hitpoint(hit_point, tmp, attributes);
 		return (1);
 	}
 }
