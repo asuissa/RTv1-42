@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/10 22:32:56 by asuissa          ###   ########.fr        #
+#    Updated: 2019/04/13 10:11:57 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRCS_BASENAME = main.c \
 	  custom_atoi.c \
 	  normal.c \
 	  camera_movement.c \
-	  update_coord.c \
+	  update_scene.c \
+	  update_objects.c \
 	  hit_sphere.c \
 	  hit_cone.c \
 	  hit_plan.c \
