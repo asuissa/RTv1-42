@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 10:28:49 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:32:43 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 10:50:25 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		*ray_casting(void *arg)
 		while (pixel_center[0] <= (env->cam.vp_center[0]
 					+ env->cam.vp_dim - ((env->cam.pas) / 2.0)))
 		{
-			env->raw_pixels[k++] = trace_ray(pixel_center, env);
+			((int*)(env->screen->pixels))[k++] = trace_ray(pixel_center, env);
 			pixel_center[0] += (env->cam.pas);
 		}
 		pixel_center[1] -= (env->cam.pas);

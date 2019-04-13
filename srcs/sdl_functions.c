@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 23:59:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/09 02:05:29 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 10:51:13 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,6 @@ int			access_surface_pixels(t_env *env)
 		i = -1;
 		while (++i < 8)
 			pthread_join(thread_id[i], NULL);
-
-		i = -1;
-		while (++i < 1000000)
-		{
-
-			((int*)(env->screen->pixels))[i] = env->raw_pixels[i];
-		}
 		SDL_UnlockSurface(env->screen);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:32:25 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 10:49:21 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ typedef struct	s_env
 	SDL_Window	*window;
 	SDL_Surface	*screen;
 	t_camera	cam;
-	int			raw_pixels[1000000];
 	t_light		*light;
 	t_elem		*elem;
 }				t_env;
