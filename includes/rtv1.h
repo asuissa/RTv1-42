@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:08:22 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 10:32:25 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,17 +155,15 @@ int				access_surface_pixels(t_env *env);
 
 void			init_cam(t_camera *cam);
 void			init_light(t_light *light);
-void			init_hit_point(t_hit *hit_point);
-
 void			init_plan(t_plan *plan);
 void			init_sphere(t_sphere *sphere);
 void			init_cone(t_cone *cone);
 void			init_cylender(t_cylender *cylender);
-
-
+void			init_hit_point(t_hit *hit_point);
 
 int				compute_hit_point(t_hit *hit_point, double tmp[3],
-									double cam_center[3], t_attributes attributes);
+									double cam_center[3],
+									t_attributes attributes);
 void			*ray_casting(void *arg);
 
 double			dot_product(double vec1[3], double vec2[3]);

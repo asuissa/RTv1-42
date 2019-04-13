@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/13 10:11:57 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/13 10:33:52 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRCS_BASENAME = main.c \
 	  plan.c \
 	  cone.c \
 	  cylender.c \
-	  test.c \
+	  ray_tracing.c \
+	  hit_point.c \
 	  file_parsing.c \
 	  custom_atoi.c \
 	  normal.c \
