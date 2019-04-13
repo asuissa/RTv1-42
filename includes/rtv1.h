@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 11:37:03 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 11:48:25 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,24 +186,24 @@ t_cone			*cone_parsing(int fd, t_camera *cam);
 t_cylender		*cylender_parsing(int fd, t_camera *cam);
 
 void			hit_sphere(double ray_vector[3],
-							double cam_center[3],
-							void *data,
-							t_hit *hit_point);
+					double cam_center[3],
+					void *data,
+					t_hit *hit_point);
 
 void			hit_plan(double ray_vector[3],
-						double cam_center[3],
-						void *data,
-						t_hit *hit_point);
+					double cam_center[3],
+					void *data,
+					t_hit *hit_point);
 
 void			hit_cone(double ray_vector[3],
-						double cam_center[3],
-						void *data,
-						t_hit *hit_point);
+					double cam_center[3],
+					void *data,
+					t_hit *hit_point);
 
 void			hit_cylender(double ray_vector[3],
-							double cam_center[3],
-							void *data,
-							t_hit *hit_point);
+					double cam_center[3],
+					void *data,
+					t_hit *hit_point);
 
 void			normal_sphere(double sphere_center[3], t_hit *hit_point);
 void			normal_plan(double normal_plan[3], t_hit *hit_point);
@@ -211,12 +211,24 @@ void			normal_cylender(t_cylender *cylender, t_hit *hit_point);
 void			normal_cone(t_cone *cone, t_hit *hit_point);
 
 
-double			point_distance(double coord_one[3], double coord_two[3]);
+double			compute_light_intensity(double point[3],
+					double light[3],
+					double power);
+void			add_diffuse(double res[3],
+					double light_vector[3],
+					t_light *light,
+					t_hit *hit_point);
+void			add_specular(double res[3],
+					double angle,
+					t_light *light,
+					t_hit *hit_point);
+void			add_ambient(double res[3], t_hit *hit_point);
 
 void			compute_color(t_hit *hit_point, double ray_vector[3], t_env *env);
 
 void			rotate(double coord[3], double cam_angle[3]);
 void			translate(double coord[3], double cam_pos[3]);
+double			point_distance(double coord_one[3], double coord_two[3]);
 
 void			update_scene(t_env *env);
 void			update_sphere(void *sphere, t_camera *cam);
