@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 11:48:25 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 12:12:03 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,11 @@ void			add_specular(double res[3],
 					t_light *light,
 					t_hit *hit_point);
 void			add_ambient(double res[3], t_hit *hit_point);
+
+int				shading(t_light *light,
+					double light_ray[3],
+					t_elem *elem,
+					t_hit *hit_point);
 
 void			compute_color(t_hit *hit_point, double ray_vector[3], t_env *env);
 

@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/13 11:50:10 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/13 12:12:29 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS_BASENAME = main.c \
 	  light.c \
 	  phong.c \
 	  light_component.c \
+	  shading.c \
 	  camera.c \
 	  sphere.c \
 	  plan.c \
