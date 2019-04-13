@@ -6,55 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 23:59:06 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:51:13 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 10:55:42 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
-
-double			anti_aliasing(int pixel, double canal[1000000])
-{
-	int i;
-	int	j;
-	double cpt;
-	double stock;
-
-	stock = 0.0;
-	cpt = 0.0;
-	i = pixel - 1000;
-	while (i <= (pixel + 1001))
-	{
-		j = i - 1;
-		while (j <= i + 1)
-		{
-			if ((j != pixel) && (j >= 0) && (j < 1000000))
-			{
-				stock += canal[j];
-				cpt += 1.0;
-			}
-			j += 1;
-		}
-		i += 1000;
-	}
-	stock /= cpt;
-	stock = (stock / canal[pixel]) * canal[pixel] + canal[pixel];
-	if (stock > 255.0)
-		stock = 255;
-	return (stock);
-}
-
-
-double			gamma_correction(double color)
-{
-	double res;
-
-	res = color / 255.0;
-/*	if (res <= 0.0031308)
-		res *= 12.92;
-	else*/
-		res = 0.94 * pow(res, (1.0/1.2));
-	return (res * 255.0);
-}
 
 int			access_surface_pixels(t_env *env)
 {

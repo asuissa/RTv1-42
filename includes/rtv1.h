@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:49:21 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 10:55:36 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ typedef struct	s_thread
 }				t_thread;
 
 
-double			gamma_correction(double color);
 int				access_surface_pixels(t_env *env);
 
 void			init_cam(t_camera *cam);
