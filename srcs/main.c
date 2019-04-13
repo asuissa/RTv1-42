@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/11 01:53:05 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/13 11:24:31 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int			main_loop(t_env *env)
 				if (event.key.keysym.sym == SDLK_LEFT)
 					env->cam.cam_pos[0] -= 1.0;
 				if (event.key.keysym.sym == SDLK_a)
-					env->cam.cam_pos[1] += 1.0;
-				if (event.key.keysym.sym == SDLK_q)
 					env->cam.cam_pos[1] -= 1.0;
+				if (event.key.keysym.sym == SDLK_q)
+					env->cam.cam_pos[1] += 1.0;
 				if (event.key.keysym.sym == SDLK_e)
 					env->cam.cam_angle[0] += (M_PI / 180.0);
 				if (event.key.keysym.sym == SDLK_d)
