@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/10 20:16:07 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/14 11:29:19 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,38 @@ void	init_cam(t_camera *cam)
 	cam->pas = cam->vp_dim / ((double)(SCREEN_WIDTH) / 2.0);
 }
 
+void	valid_file(int fd)
+{
+	char	*line;
+	int		res;
+
+	while ((res = get_next_line(fd, &line)))
+	{
+		if (res <= 0)
+			invalid_file_error(fd);
+		else if (!(ft_strcmp(line, "camera:")))
+		{
+			free(line);
+			break ;
+		}
+		else if (ft_strcmp(line, "\0"))
+		{
+			free(line);
+			ft_error("Camera must be defined at the beginning of the file.\n");
+		}
+		else
+			free(line);
+	}
+	if (!(res))
+		invalid_file_error(fd);
+}
+
 void	camera_parsing(int fd, t_camera *cam)
 {
 	char	*line;
 	char	**tab;
 
+	valid_file(fd);
 	init_cam(cam);
 	while (get_next_line(fd, &line) > 0)
 	{

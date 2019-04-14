@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 12:12:03 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 11:28:22 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ double			ft_atoi_double(char *str);
 int				ft_atoi_hexa(char *str);
 void			ft_free_parse(char **tab, char *line);
 void			ft_error(char *msg);
-
+void			invalid_file_error(int fd);
 
 
 void			camera_parsing(int fd, t_camera *cam);
