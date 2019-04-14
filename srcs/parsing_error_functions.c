@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 11:24:40 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 18:10:12 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 19:31:06 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,15 @@ void		invalid_file_error(int fd)
 	ft_error("file is empty, incomplete or invalid\n");
 }
 
-char		**error_parse_word(char *line)
+char		**parse_word(char *line)
 {
 	char	**tab;
 
 	if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
 	{
 		free_split_tab(tab);
-		free(line);
-		ft_error("error parse position\n");
+		return (NULL);
 	}
-	//controler les inputs ici
 	return (tab);
 }
 

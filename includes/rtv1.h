@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 17:55:31 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:55:57 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void			free_split_tab(char **tab);
 void			ft_error(char *msg);
 void			invalid_file_error(int fd);
 int				invalid_read(char *file);
-char			**error_parse_word(char *line);
+char			**parse_word(char *line);
 
 void			camera_parsing(int fd, t_camera *cam);
 t_light			*light_parsing(int fd, t_light *light, t_camera *cam);

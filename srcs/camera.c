@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 18:46:43 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/14 19:32:22 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	valid_file(int fd)
 	{
 		free(line);
 		ft_error("Camera must be defined at the beginning of the file.\n");
-	}	
+	}
 }
 
 int		camera_position_parsing(char *line, t_camera *cam)
 {
 	char	**tab;
 
-	tab = error_parse_word(line);
+	if (!(tab = parse_word(line)))
+		return (0);
 	if (ft_strcmp(tab[0], "\tposition.x") == 0)
 		cam->cam_pos[0] = ft_atoi_double(tab[1]);
 	else if (ft_strcmp(tab[0], "\tposition.y") == 0)
@@ -68,7 +69,8 @@ int		camera_angle_parsing(char *line, t_camera *cam)
 {
 	char	**tab;
 
-	tab = error_parse_word(line);
+	if (!(tab = parse_word(line)))
+		return (0);
 	if (ft_strcmp(tab[0], "\tangle.x") == 0)
 		cam->cam_angle[0] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 	else if (ft_strcmp(tab[0], "\tangle.y") == 0)
@@ -97,12 +99,13 @@ void	camera_parsing(int fd, t_camera *cam)
 			free(line);
 			break ;
 		}
-		if (!(camera_position_parsing(line, cam))
+		else if (!(camera_position_parsing(line, cam))
 				&& !(camera_angle_parsing(line, cam)))
 		{
 			free(line);
-			ft_error("Error parse cam\n");
+			invalid_file_error(fd);
 		}
-		free(line);
+		else
+			free(line);
 	}
 }

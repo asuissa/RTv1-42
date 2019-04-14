@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/14 11:27:24 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/14 19:13:11 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ SDL = $(SDL_LIBPATH)/libSDL2.a
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -D_THREAD_SAFE
+CFLAGS =  -Wall -Wextra -Werror -D_THREAD_SAFE
 
 LDFLAGS = -lSDL2 -lm -lft
 
