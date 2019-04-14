@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 16:17:38 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/14 20:02:40 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ t_light		*get_last_light(t_light **head)
 
 	if (!(*head))
 	{
-		*head = (t_light*)malloc(sizeof(t_light));
+		if (!(*head = (t_light*)malloc(sizeof(t_light))))
+			return (NULL);
 		(*head)->next = NULL;
 		return (*head);
 	}
@@ -27,7 +28,8 @@ t_light		*get_last_light(t_light **head)
 		tmp = *head;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = (t_light*)malloc(sizeof(t_light));
+		if (!(tmp->next = (t_light*)malloc(sizeof(t_light))))
+			return (NULL);
 		tmp->next->next = NULL;
 		return (tmp->next);
 	}
@@ -39,7 +41,8 @@ t_elem		*get_last_elem(t_elem **head)
 
 	if (!(*head))
 	{
-		*head = (t_elem*)malloc(sizeof(t_elem));
+		if (!(*head = (t_elem*)malloc(sizeof(t_elem))))
+			return (NULL);
 		(*head)->next = NULL;
 		return (*head);
 	}
@@ -48,7 +51,8 @@ t_elem		*get_last_elem(t_elem **head)
 		tmp = *head;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = (t_elem*)malloc(sizeof(t_elem));
+		if (!(tmp->next = (t_elem*)malloc(sizeof(t_elem))))
+			return (NULL);
 		tmp->next->next = NULL;
 		return (tmp->next);
 	}

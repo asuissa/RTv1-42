@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/14 19:13:11 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/14 20:17:16 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS_BASENAME = main.c \
 	  sdl_functions.c \
 	  maths_functions.c \
 	  parsing_error_functions.c \
+	  list_error_functions.c \
 	  light.c \
 	  phong.c \
 	  light_component.c \
