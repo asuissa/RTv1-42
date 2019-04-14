@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 11:29:19 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 11:54:34 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_cam(t_camera *cam)
 	{
 		cam->cam_pos[i] = 0;
 		cam->cam_pos_relative[i] = 0;
+		cam->cam_angle[i] = 0;
 	}
 	cam->vp_center[0] = 0;
 	cam->vp_center[1] = 0;
