@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 01:36:56 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/12 09:26:32 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:01:34 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ t_cone	*cone_parsing(int fd, t_camera *cam)
 			cone->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 		else
 		{
-			ft_free_parse(tab, line);
+		//	ft_free_parse(tab, line);
 			ft_error("parse cone error");
 		}
-		ft_free_parse(tab, line);
+	//	ft_free_parse(tab, line);
 	}
 	rotate(cone->vector, cone->rotation);
 	i = -1;

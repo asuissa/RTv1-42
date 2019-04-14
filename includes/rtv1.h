@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 16:25:08 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/14 17:55:31 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ double			compute_ratio(double a, double b, double c);
 void			file_parsing(char *file, t_env *env);
 double			ft_atoi_double(char *str);
 int				ft_atoi_hexa(char *str);
-void			ft_free_parse(char **tab, char *line);
+void			free_split_tab(char **tab);
 void			ft_error(char *msg);
 void			invalid_file_error(int fd);
 int				invalid_read(char *file);

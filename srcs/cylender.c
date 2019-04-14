@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/12 09:17:48 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:02:18 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 			cylender->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 		else
 		{
-			ft_free_parse(tab, line);
+		//	ft_free_parse(tab, line);
 			ft_error("parse cylender error\n");
 		}
-		ft_free_parse(tab, line);
+		//ft_free_parse(tab, line);
 	}
 	rotate(cylender->line_vector, cylender->rotation);
 	i = -1;

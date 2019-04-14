@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/12 07:21:45 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:00:55 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,10 @@ t_plan		*plan_parsing(int fd, t_camera *cam)
 			plan->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 		else
 		{
-			ft_free_parse(tab, line);
+//			ft_free_parse(tab, line);
 			ft_error("parse plan error\n");
 		}
-		ft_free_parse(tab, line);
+//		ft_free_parse(tab, line);
 	}
 	rotate(plan->normal, plan->rotation);
 	norm_vector(plan->normal);

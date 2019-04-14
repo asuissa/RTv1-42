@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/12 07:46:12 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:00:32 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ t_sphere	*sphere_parsing(int fd, t_camera *cam)
 			sphere->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 		else
 		{
-			ft_free_parse(tab, line);
+	//		ft_free_parse(tab, line);
 			ft_error("parse cam error\n");
 		}
-		ft_free_parse(tab, line);
+	//	ft_free_parse(tab, line);
 	}
 	i = -1;
 	while (++i < 3)

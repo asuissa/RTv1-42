@@ -6,13 +6,13 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 11:24:40 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 17:11:44 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:10:12 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void		ft_free_parse(char **tab, char *line)
+void	free_split_tab(char **tab)
 {
 	int		i;
 
@@ -22,9 +22,6 @@ void		ft_free_parse(char **tab, char *line)
 	if (tab)
 		free(tab);
 	tab = NULL;
-	if (line)
-		free(line);
-	line = NULL;
 }
 
 int		invalid_read(char *file)
@@ -54,9 +51,11 @@ char		**error_parse_word(char *line)
 
 	if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
 	{
-		ft_free_parse(tab, line);
-		ft_error("error parse word\n");
+		free_split_tab(tab);
+		free(line);
+		ft_error("error parse position\n");
 	}
+	//controler les inputs ici
 	return (tab);
 }
 

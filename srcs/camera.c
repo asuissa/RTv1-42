@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 17:13:32 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:10:19 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,14 @@ void	init_cam(t_camera *cam)
 void	valid_file(int fd)
 {
 	char	*line;
-	int		res;
 
-	while ((res = get_next_line(fd, &line)) <= 0)
-	{
-		if (!(ft_strcmp(line, "amera:")))
-		{
-			free(line);
-			break ;
-		}
-		else if (ft_strcmp(line, "\0"))
-		{
-			free(line);
-			ft_error("Camera must be defined at the beginning of the file.\n");
-		}
-		else
-			free(line);
-	}
-	if (res <= 0)
+	if (get_next_line(fd, &line) <= 0)
 		invalid_file_error(fd);
+	if ((ft_strcmp(line, "amera:")))
+	{
+		free(line);
+		ft_error("Camera must be defined at the beginning of the file.\n");
+	}	
 }
 
 void	camera_position_parsing(char *line, t_camera *cam)
@@ -66,6 +55,7 @@ void	camera_position_parsing(char *line, t_camera *cam)
 		cam->cam_pos[1] = ft_atoi_double(tab[1]);
 	else if (ft_strcmp(tab[0], "\tposition.z") == 0)
 		cam->cam_pos[2] = ft_atoi_double(tab[1]);
+	free_split_tab(tab);
 }
 
 void	camera_angle_parsing(char *line, t_camera *cam)
@@ -79,6 +69,7 @@ void	camera_angle_parsing(char *line, t_camera *cam)
 		cam->cam_angle[1] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 	else if (ft_strcmp(tab[0], "\tangle.z") == 0)
 		cam->cam_angle[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+	free_split_tab(tab);
 }
 
 void	camera_parsing(int fd, t_camera *cam)
