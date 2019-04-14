@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 18:00:04 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 21:01:02 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 			light->power = ft_atoi_double(tab[1]);
 		else
 		{
-	//		ft_free_parse(tab, line);
-			ft_error("parse light error\n");
+			//ft_free_parse(tab, line);
+			return (NULL);//ft_error("parse light error\n");
 		}
-	//	ft_free_parse(tab, line);
+		//ft_free_parse(tab, line);
 	}
 	rotate(light->direction, light->light_angle);
 	i = -1;
