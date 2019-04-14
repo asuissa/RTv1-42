@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 11:54:34 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 16:30:24 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ void	valid_file(int fd)
 	char	*line;
 	int		res;
 
-	while ((res = get_next_line(fd, &line)))
+	while ((res = get_next_line(fd, &line)) <= 0)
 	{
-		if (res <= 0)
-			invalid_file_error(fd);
-		else if (!(ft_strcmp(line, "camera:")))
+		if (!(ft_strcmp(line, "amera:")))
 		{
 			free(line);
 			break ;
@@ -53,8 +51,13 @@ void	valid_file(int fd)
 		else
 			free(line);
 	}
-	if (!(res))
+	if (res <= 0)
 		invalid_file_error(fd);
+}
+
+int		cam_parse_angle(t_camera *cam)
+{
+
 }
 
 void	camera_parsing(int fd, t_camera *cam)
@@ -68,8 +71,7 @@ void	camera_parsing(int fd, t_camera *cam)
 	{
 		if (line[0] == '\0')
 			break ;
-		if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
-			ft_error("error parse word\n");
+		tab = error_parse_word(line);
 		if (ft_strcmp(tab[0], "\tposition.x") == 0)
 			cam->cam_pos[0] = ft_atoi_double(tab[1]);
 		else if (ft_strcmp(tab[0], "\tposition.y") == 0)
