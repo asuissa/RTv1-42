@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 20:02:40 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 21:26:11 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_elem		*get_last_elem(t_elem **head)
 	}
 }
 
+
+//une fonction par partie qui retourne 0 si null
 void		file_parsing(char *file, t_env *env)
 {
 	t_elem		*new_elem;
