@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 11:24:40 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 19:31:06 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 19:41:33 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ int		invalid_read(char *file)
 	return (fd);
 }
 
+int		ft_isnumber(char *nb)
+{
+	if (!nb)
+		return (0);
+	if (*nb == '-' || *nb == '+')
+		nb++;
+	while (*nb)
+	{
+		if (!ft_isdigit(*nb))
+			return (0);
+		nb++;
+	}
+	return (1);
+}
+
 void		invalid_file_error(int fd)
 {
 	close(fd);
@@ -50,6 +65,11 @@ char		**parse_word(char *line)
 	char	**tab;
 
 	if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
+	{
+		free_split_tab(tab);
+		return (NULL);
+	}
+	if (!ft_isnumber(&tab[1][1]) || tab[1][0] != ' ')
 	{
 		free_split_tab(tab);
 		return (NULL);
