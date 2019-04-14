@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 11:24:40 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 19:41:33 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/14 20:03:57 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,23 @@ int		invalid_read(char *file)
 
 int		ft_isnumber(char *nb)
 {
+	int	i;
+
+	i = 0;
 	if (!nb)
 		return (0);
 	if (*nb == '-' || *nb == '+')
 		nb++;
 	while (*nb)
 	{
-		if (!ft_isdigit(*nb))
+		if (*nb == '.')
+			i++;
+		else if (!ft_isdigit(*nb) && *nb != '.')
 			return (0);
 		nb++;
 	}
+	if (i > 1 || *(nb - 1) == '.')
+		return (0);
 	return (1);
 }
 
