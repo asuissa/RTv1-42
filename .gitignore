@@ -1,7 +1,7 @@
 # Directories
-./objs
-./SDL2_utils
-./SDL2-2.0.9
+objs
+SDL2_utils
+SDL2-2.0.9
 
 # Object files
 *.o
