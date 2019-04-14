@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 18:10:19 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/14 18:46:43 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	valid_file(int fd)
 	}	
 }
 
-void	camera_position_parsing(char *line, t_camera *cam)
+int		camera_position_parsing(char *line, t_camera *cam)
 {
 	char	**tab;
 
@@ -55,10 +55,16 @@ void	camera_position_parsing(char *line, t_camera *cam)
 		cam->cam_pos[1] = ft_atoi_double(tab[1]);
 	else if (ft_strcmp(tab[0], "\tposition.z") == 0)
 		cam->cam_pos[2] = ft_atoi_double(tab[1]);
+	else
+	{
+		free_split_tab(tab);
+		return (0);
+	}
 	free_split_tab(tab);
+	return (1);
 }
 
-void	camera_angle_parsing(char *line, t_camera *cam)
+int		camera_angle_parsing(char *line, t_camera *cam)
 {
 	char	**tab;
 
@@ -69,7 +75,13 @@ void	camera_angle_parsing(char *line, t_camera *cam)
 		cam->cam_angle[1] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 	else if (ft_strcmp(tab[0], "\tangle.z") == 0)
 		cam->cam_angle[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+	else
+	{
+		free_split_tab(tab);
+		return (0);
+	}
 	free_split_tab(tab);
+	return (1);
 }
 
 void	camera_parsing(int fd, t_camera *cam)
@@ -85,10 +97,12 @@ void	camera_parsing(int fd, t_camera *cam)
 			free(line);
 			break ;
 		}
-		else if (ft_strstr(line, "position"))
-			camera_position_parsing(line, cam);
-		else if (ft_strstr(line, "angle"))
-			camera_angle_parsing(line, cam);
+		if (!(camera_position_parsing(line, cam))
+				&& !(camera_angle_parsing(line, cam)))
+		{
+			free(line);
+			ft_error("Error parse cam\n");
+		}
 		free(line);
 	}
 }
