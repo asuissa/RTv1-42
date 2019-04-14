@@ -13,7 +13,7 @@ light:
 	angle.x: -20
 	angle.y: 35
 	angle.z: 0
-	color: FF
+	color: FFFFFF
 	power: 100000
 	aperture: 180
 
@@ -24,7 +24,7 @@ light:
 	angle.x: -20
 	angle.y: -35
 	angle.z: 0
-	color: FF00
+	color: FFFFFF
 	power: 100000
 	aperture: 180
 
@@ -35,7 +35,7 @@ light:
 	angle.x: -25
 	angle.y: 0
 	angle.z: 0
-	color: FF0000
+	color: FFFFFF
 	power: 100000
 	aperture: 180
 

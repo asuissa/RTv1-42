@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 16:30:24 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/14 17:13:32 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,43 +55,49 @@ void	valid_file(int fd)
 		invalid_file_error(fd);
 }
 
-int		cam_parse_angle(t_camera *cam)
+void	camera_position_parsing(char *line, t_camera *cam)
 {
+	char	**tab;
 
+	tab = error_parse_word(line);
+	if (ft_strcmp(tab[0], "\tposition.x") == 0)
+		cam->cam_pos[0] = ft_atoi_double(tab[1]);
+	else if (ft_strcmp(tab[0], "\tposition.y") == 0)
+		cam->cam_pos[1] = ft_atoi_double(tab[1]);
+	else if (ft_strcmp(tab[0], "\tposition.z") == 0)
+		cam->cam_pos[2] = ft_atoi_double(tab[1]);
+}
+
+void	camera_angle_parsing(char *line, t_camera *cam)
+{
+	char	**tab;
+
+	tab = error_parse_word(line);
+	if (ft_strcmp(tab[0], "\tangle.x") == 0)
+		cam->cam_angle[0] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+	else if (ft_strcmp(tab[0], "\tangle.y") == 0)
+		cam->cam_angle[1] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
+	else if (ft_strcmp(tab[0], "\tangle.z") == 0)
+		cam->cam_angle[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 }
 
 void	camera_parsing(int fd, t_camera *cam)
 {
 	char	*line;
-	char	**tab;
 
 	valid_file(fd);
 	init_cam(cam);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line[0] == '\0')
-			break ;
-		tab = error_parse_word(line);
-		if (ft_strcmp(tab[0], "\tposition.x") == 0)
-			cam->cam_pos[0] = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0], "\tposition.y") == 0)
-			cam->cam_pos[1] = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0], "\tposition.z") == 0)
-			cam->cam_pos[2] = ft_atoi_double(tab[1]);
-		else if (ft_strcmp(tab[0], "\tangle.x") == 0
-				&& (ft_atoi_double(tab[1]) <= 180))
-			cam->cam_angle[0] = (ft_atoi_double(tab[1]) * M_PI) / 180;
-		else if (ft_strcmp(tab[0], "\tangle.y") == 0
-				&& (ft_atoi_double(tab[1]) <= 180))
-			cam->cam_angle[1] = (ft_atoi_double(tab[1]) * M_PI) / 180;
-		else if (ft_strcmp(tab[0], "\tangle.z") == 0
-				&& (ft_atoi_double(tab[1]) <= 180))
-			cam->cam_angle[2] = (ft_atoi_double(tab[1]) * M_PI) / 180;
-		else
 		{
-			ft_free_parse(tab, line);
-			ft_error("parse cam error\n");
+			free(line);
+			break ;
 		}
-		ft_free_parse(tab, line);
+		else if (ft_strstr(line, "position"))
+			camera_position_parsing(line, cam);
+		else if (ft_strstr(line, "angle"))
+			camera_angle_parsing(line, cam);
+		free(line);
 	}
 }
