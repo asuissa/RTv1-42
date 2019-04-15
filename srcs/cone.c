@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 01:36:56 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 20:58:53 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 16:36:29 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_cone	*cone_parsing(int fd, t_camera *cam)
 		if (line[0] == '\0')
 		{
 			free(line);
-			break; //verifier free
+			break ; //verifier free
 		}
 		else if (!cone_parse_1(cone, line) && !cone_parse_2(cone, line)
 				&& !cone_parse_3(cone, line) && !cone_parse_coeff(cone, line))

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 21:00:32 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 16:33:10 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ typedef struct		s_cone
 typedef struct		s_cylender
 {
 	char			*type;
-	double			origin[3];		 
-	double			origin_relative[3];		 
+	double			origin[3];
+	double			origin_relative[3];
 	double			line_vector[3];
 	double			line_vector_relative[3];
 	double			radius;
@@ -251,5 +251,13 @@ int		cone_parse_2(t_cone *cone, char *line);
 int		cone_parse_3(t_cone *cone, char *line);
 int		cone_parse_coeff(t_cone *cone, char *line);
 void	cone_rot_trans(t_cone *cone, t_camera *cam);
+
+/*
+** norme cylender
+*/
+int		cylender_parse_1(t_cylender *cylender, char *line);
+int		cylender_parse_2(t_cylender *cylender, char *line);
+int		cylender_parse_coeff(t_cylender *cylender, char *line);
+int		cylender_rot_trans(t_cylender *cylender, t_camera *cam);
 
 #endif
