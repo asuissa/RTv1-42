@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 17:48:12 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 18:44:20 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ t_plan		*plan_parsing(int fd, t_camera *cam)
 {
 	t_plan		*plan;
 	char		*line;
-	char		**tab;
-	int			i;
 
 	plan = (t_plan*)malloc(sizeof(t_plan));
 	init_plan(plan);

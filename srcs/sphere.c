@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 18:09:03 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 18:44:01 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_sphere	*sphere_parsing(int fd, t_camera *cam)
 {
 	t_sphere	*sphere;
 	char		*line;
-	char		**tab;
-	int			i;
 
 	sphere = (t_sphere*)malloc(sizeof(t_sphere));
 	init_sphere(sphere);

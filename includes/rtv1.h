@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 18:33:37 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 18:47:48 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,8 @@ int				shading(t_light *light,
 					double light_ray[3],
 					t_elem *elem,
 					t_hit *hit_point);
+
+void			get_rgb_light(t_light *light);
 
 void			compute_color(t_hit *hit_point, double ray_vector[3], t_env *env);
 

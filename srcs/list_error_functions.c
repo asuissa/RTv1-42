@@ -6,9 +6,11 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 20:05:37 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 20:23:49 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/15 18:43:31 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/rtv1.h"
 
 void	clean_lists(t_light *light, t_elem *elem)
 {

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 18:40:58 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 18:44:50 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void		file_parsing(char *file, t_env *env)
 		if (ft_strcmp("light:", line) == 0)
 		{
 			if (!light_parsing(fd, new_light, &(env->cam))
-					|| !new_light = get_last_light(&(env->light)))
+					|| !(new_light = get_last_light(&(env->light))))
 				invalid_line_error(fd, line);
 			printf("light done\n");
 		}

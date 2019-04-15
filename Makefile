@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/14 21:01:44 by asuissa          ###   ########.fr        #
+#    Updated: 2019/04/15 18:46:18 by asuissa          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,11 @@ SRCS_BASENAME = main.c \
 	  hit_plan.c \
 	  hit_cylender.c \
 	  cone_parse.c \
-	
+	  plan_parse.c \
+	  cylender_parse.c \
+	  sphere_parse.c \
+	  light_parse.c \
+
 INC = includes/rtv1.h
 
 OBJS_DIR = objs/
