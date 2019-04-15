@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 15:49:46 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/15 16:35:32 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 16:43:12 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		cylender_parse_2(t_cylender *cylender, char *line)
 
 	if (!(tab = parse_word(line)))
 		return (0);
-	else if (ft_strcmp(tab[0], "\ttranslation.x") == 0)
+	if (ft_strcmp(tab[0], "\ttranslation.x") == 0)
 		cylender->origin[0] += ft_atoi_double(tab[1]);
 	else if (ft_strcmp(tab[0], "\ttranslation.y") == 0)
 		cylender->origin[1] += ft_atoi_double(tab[1]);

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 16:33:10 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 16:58:51 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,5 +259,12 @@ int		cylender_parse_1(t_cylender *cylender, char *line);
 int		cylender_parse_2(t_cylender *cylender, char *line);
 int		cylender_parse_coeff(t_cylender *cylender, char *line);
 int		cylender_rot_trans(t_cylender *cylender, t_camera *cam);
+
+/*
+** norme light
+*/
+int		light_parse_1(t_light *light, char *line);
+int		light_parse_2(t_light *light, char *line);
+void	light_rot_trans(t_light *light, t_camera *cam);
 
 #endif
