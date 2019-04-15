@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 17:51:07 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 18:10:43 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,14 @@ int		plan_parse_1(t_plan *plan, char *line);
 int		plan_parse_2(t_plan *plan, char *line);
 int		plan_parse_coeff(t_plan *plan, char *line);
 void	plan_rot_trans(t_plan *plan, t_camera *cam);
+
+/*
+** norme sphere
+*/
+int		sphere_parse_1(t_sphere *sphere, char *line);
+int		sphere_parse_2(t_sphere *sphere, char *line);
+int		sphere_parse_coeff(t_sphere *sphere, char *line);
+void	sphere_rot_trans(t_sphere *sphere, t_camera *cam);
 
 /*
 ** norme light
