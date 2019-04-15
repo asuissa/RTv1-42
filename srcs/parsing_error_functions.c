@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 11:24:40 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 18:25:28 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 19:14:38 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ char		**parse_word(char *line)
 		free_split_tab(tab);
 		return (NULL);
 	}
-	if (!ft_isnumber(&tab[1][1]) || tab[1][0] != ' ')
+	if ((!ft_isnumber(&tab[1][1]) || tab[1][0] != ' ')
+			&& !ft_strstr(tab[0], "color"))
 	{
 		free_split_tab(tab);
 		return (NULL);

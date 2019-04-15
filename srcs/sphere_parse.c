@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 17:55:08 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/15 18:07:06 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 19:18:57 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		sphere_parse_2(t_sphere *sphere, char *line)
 int		sphere_parse_coeff(t_sphere *sphere, char *line)
 {
 	char	**tab;
-	int		i;
+	double	i;
 
 	if (!(tab = parse_word(line)))
 		return (0);

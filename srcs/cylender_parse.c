@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 15:49:46 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/15 16:43:12 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 19:19:39 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		cylender_parse_2(t_cylender *cylender, char *line)
 int		cylender_parse_coeff(t_cylender *cylender, char *line)
 {
 	char	**tab;
-	int		i;
+	double	i;
 
 	if (!(tab = parse_word(line)))
 		return (0);

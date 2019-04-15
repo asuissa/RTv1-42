@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 17:16:43 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/15 17:53:37 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 19:19:13 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		plan_parse_2(t_plan *plan, char *line)
 int		plan_parse_coeff(t_plan *plan, char *line)
 {
 	char	**tab;
-	int		i;
+	double	i;
 
 	if (!(tab = parse_word(line)))
 		return (0);
