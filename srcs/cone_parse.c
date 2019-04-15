@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 20:33:24 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/15 19:19:53 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 19:31:52 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		cone_parse_3(t_cone *cone, char *line)
 int		cone_parse_coeff(t_cone *cone, char *line)
 {
 	char	**tab;
-	int		i;
+	double	i;
 
 	if (!(tab = parse_word(line)))
 		return (0);

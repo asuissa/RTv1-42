@@ -46,8 +46,8 @@ plan:
 	normal.y: 0
 	normal.z: -1
 	ambient coeff: 0.2
-	diffuse coeff: 0.8
-	specular coeff: 0.0
+	diffuse coeff: 0.7
+	specular coeff: 0.1
 	color: FFFFFF
 	shininess: 1
 	translation.x: 10

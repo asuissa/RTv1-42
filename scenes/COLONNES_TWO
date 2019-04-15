@@ -4,20 +4,26 @@ camera:
 	position.z: -50
 
 light:
-	position.x: 15
-	position.y: 50
-	position.z: 0
-	ambient: 0.3
-	diffuse_color: FFFFFF
-	specular: 0.5
+	position.x: 20
+	position.y: 10
+	position.z: -15
+	angle.x: -20
+	angle.y: 35
+	angle.z: 0
+	color: FFFFFF
+	power: 100000
+	aperture: 180
 
 light:
-	position.x: -15
-	position.y: 50
-	position.z: 0
-	ambient: 0.3
-	diffuse_color: FFFFFF
-	specular: 0.5
+	position.x: -20
+	position.y: 10
+	position.z: -15
+	angle.x: -20
+	angle.y: -35
+	angle.z: 0
+	color: FFFFFF
+	power: 100000
+	aperture: 180
 
 cylender:
 	position.x: 0

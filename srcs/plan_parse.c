@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 17:16:43 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/15 19:19:13 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 19:48:44 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		plan_parse_1(t_plan *plan, char *line)
 		plan->attributes.color = ft_atoi_hexa(tab[1]);
 	else
 	{
+		printf("test1\n");
 		free_split_tab(tab);
 		return (0);
 	}
@@ -63,6 +64,7 @@ int		plan_parse_2(t_plan *plan, char *line)
 		plan->rotation[2] = (ft_atoi_double(tab[1]) * M_PI) / 180.0;
 	else
 	{
+		printf("test2\n");
 		free_split_tab(tab);
 		return (0);
 	}
@@ -88,6 +90,7 @@ int		plan_parse_coeff(t_plan *plan, char *line)
 		plan->attributes.specular_coeff = ft_atoi_double(tab[1]);
 	else
 	{
+		printf("test3\n");
 		free_split_tab(tab);
 		return (0);
 	}

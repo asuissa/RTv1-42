@@ -60,7 +60,7 @@ plan:
 	position.z: 0
 	normal.x: 0
 	normal.y: 1
-	normal.z: 0F
+	normal.z: 0
 	ambient coeff: 0.1
 	diffuse coeff: 0.6
 	specular coeff: 0.3

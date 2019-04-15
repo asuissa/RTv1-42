@@ -7,9 +7,7 @@ light:
 	position.x: 6
 	position.y: 3
 	position.z: -2
-	ambient: 0.3
-	diffuse_color: FFFFFF
-	specular: 0.5
+	color: FFFFFF
 
 sphere:
 	position.x: 0
