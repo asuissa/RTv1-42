@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 11:24:40 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 20:03:57 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 18:25:28 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ void		invalid_file_error(int fd)
 {
 	close(fd);
 	ft_error("file is empty, incomplete or invalid\n");
+}
+
+void		invalid_line_error(int fd, char *line)
+{
+	ft_memdel((void**)&line);
+	close(fd);
+	ft_error("file is invalid\n");
 }
 
 char		**parse_word(char *line)

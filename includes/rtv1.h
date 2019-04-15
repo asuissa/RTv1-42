@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 18:10:43 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 18:33:37 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,12 +173,6 @@ double			compute_ratio(double a, double b, double c);
 void			file_parsing(char *file, t_env *env);
 double			ft_atoi_double(char *str);
 int				ft_atoi_hexa(char *str);
-void			clean_lists(t_light *light, t_elem *elem);
-void			free_split_tab(char **tab);
-void			ft_error(char *msg);
-void			invalid_file_error(int fd);
-int				invalid_read(char *file);
-char			**parse_word(char *line);
 
 void			camera_parsing(int fd, t_camera *cam);
 t_light			*light_parsing(int fd, t_light *light, t_camera *cam);
@@ -243,44 +237,57 @@ void			update_plan(void *plan, t_camera *cam);
 void			update_cylender(void *cylender, t_camera *cam);
 void			update_cone(void *cone, t_camera *cam);
 
+int				ft_isnumber(char *nb);
+
+/*
+** Error fctn
+*/
+void			clean_lists(t_light *light, t_elem *elem);
+void			invalid_line_error(int fd, char *line);
+void			invalid_file_error(int fd);
+void			free_split_tab(char **tab);
+int				invalid_read(char *file);
+char			**parse_word(char *line);
+void			ft_error(char *msg);
+
 /*
 ** norme cone
 */
-int		cone_parse_1(t_cone *cone, char *line);
-int		cone_parse_2(t_cone *cone, char *line);
-int		cone_parse_3(t_cone *cone, char *line);
-int		cone_parse_coeff(t_cone *cone, char *line);
-void	cone_rot_trans(t_cone *cone, t_camera *cam);
+int				cone_parse_1(t_cone *cone, char *line);
+int				cone_parse_2(t_cone *cone, char *line);
+int				cone_parse_3(t_cone *cone, char *line);
+int				cone_parse_coeff(t_cone *cone, char *line);
+void			cone_rot_trans(t_cone *cone, t_camera *cam);
 
 /*
 ** norme cylender
 */
-int		cylender_parse_1(t_cylender *cylender, char *line);
-int		cylender_parse_2(t_cylender *cylender, char *line);
-int		cylender_parse_coeff(t_cylender *cylender, char *line);
-int		cylender_rot_trans(t_cylender *cylender, t_camera *cam);
+int				cylender_parse_1(t_cylender *cylender, char *line);
+int				cylender_parse_2(t_cylender *cylender, char *line);
+int				cylender_parse_coeff(t_cylender *cylender, char *line);
+int				cylender_rot_trans(t_cylender *cylender, t_camera *cam);
 
 /*
 ** norme plan
 */
-int		plan_parse_1(t_plan *plan, char *line);
-int		plan_parse_2(t_plan *plan, char *line);
-int		plan_parse_coeff(t_plan *plan, char *line);
-void	plan_rot_trans(t_plan *plan, t_camera *cam);
+int				plan_parse_1(t_plan *plan, char *line);
+int				plan_parse_2(t_plan *plan, char *line);
+int				plan_parse_coeff(t_plan *plan, char *line);
+void			plan_rot_trans(t_plan *plan, t_camera *cam);
 
 /*
 ** norme sphere
 */
-int		sphere_parse_1(t_sphere *sphere, char *line);
-int		sphere_parse_2(t_sphere *sphere, char *line);
-int		sphere_parse_coeff(t_sphere *sphere, char *line);
-void	sphere_rot_trans(t_sphere *sphere, t_camera *cam);
+int				sphere_parse_1(t_sphere *sphere, char *line);
+int				sphere_parse_2(t_sphere *sphere, char *line);
+int				sphere_parse_coeff(t_sphere *sphere, char *line);
+void			sphere_rot_trans(t_sphere *sphere, t_camera *cam);
 
 /*
 ** norme light
 */
-int		light_parse_1(t_light *light, char *line);
-int		light_parse_2(t_light *light, char *line);
-void	light_rot_trans(t_light *light, t_camera *cam);
+int				light_parse_1(t_light *light, char *line);
+int				light_parse_2(t_light *light, char *line);
+void			light_rot_trans(t_light *light, t_camera *cam);
 
 #endif
