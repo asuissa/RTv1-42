@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 16:35:30 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 17:49:05 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 			free(line);
 			break ; //verifier free
 		}
-		else if (!cylender_parse_1(cone, line) && !cylender_parse_2(cone, line)
-				&& !cylender_parse_coeff(cone, line))
+		else if (!cylender_parse_1(cylender, line)
+				&& !cylender_parse_2(cylender, line)
+				&& !cylender_parse_coeff(cylender, line))
 		{
 			free(line);
 			return (NULL);

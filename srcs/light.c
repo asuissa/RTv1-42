@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 16:52:35 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/15 17:49:40 by asuissa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 			free(line);
 			break ; //verifier free
 		}
-		else if (!light_parse_1(cone, line) && !light_parse_2(cone, line))
+		else if (!light_parse_1(light, line) && !light_parse_2(light, line))
 		{
 			free(line);
 			return (NULL);
