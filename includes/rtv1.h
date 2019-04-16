@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/16 15:46:05 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/16 19:15:43 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void			init_cam(t_camera *cam);
 void			init_light(t_light *light);
 void			init_plan(t_plan *plan);
 void			init_sphere(t_sphere *sphere);
-void			init_cone(t_cone *cone);
+t_cone			*init_cone(void);
 void			init_cylender(t_cylender *cylender);
 void			init_hit_point(t_hit *hit_point);
 
@@ -173,6 +173,7 @@ double			compute_ratio(double a, double b, double c);
 void			file_parsing(char *file, t_env *env);
 double			ft_atoi_double(char *str);
 int				ft_atoi_hexa(char *str);
+int				check_attributes(t_attributes *attributes);
 
 void			camera_parsing(int fd, t_camera *cam);
 t_light			*light_parsing(int fd, t_light *light, t_camera *cam);
@@ -255,10 +256,8 @@ void			ft_error(char *msg);
 /*
 ** norme cone
 */
-int				cone_parse_basics(t_cone *cone, char *line);
-int				cone_parse_movements(t_cone *cone, char *line);
-int				cone_parse_attributes(t_cone *cone, char *line);
-void			cone_rotation_translation(t_cone *cone, t_camera *cam);
+int				cone_parse(t_cone *cone, char *line);
+
 
 /*
 ** norme cylender

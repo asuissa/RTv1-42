@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 20:33:24 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/16 15:56:27 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/16 19:16:21 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int		cone_parse_basics(t_cone *cone, char *line)
 int		cone_parse_movements(t_cone *cone, char *line)
 {
 	char	**tab;
-	double	i;
 
 	if (!(tab = parse_word(line)))
 		return (0);
@@ -72,18 +71,14 @@ int		cone_parse_movements(t_cone *cone, char *line)
 int		cone_parse_attributes(t_cone *cone, char *line)
 {
 	char	**tab;
-	double	i;
 
 	if (!(tab = parse_word(line)))
 		return (0);
-	if (ft_strcmp(tab[0], "\tambient coeff") == 0
-			&& (i = ft_atoi_double(tab[1])) < 1 && i > 0)
+	if (ft_strcmp(tab[0], "\tambient coeff") == 0)
 		cone->attributes.ambient_coeff = ft_atoi_double(tab[1]);
-	else if (ft_strcmp(tab[0], "\tdiffuse coeff") == 0
-			&& (i = ft_atoi_double(tab[1])) < 1 && i > 0)
+	else if (ft_strcmp(tab[0], "\tdiffuse coeff") == 0)
 		cone->attributes.diffuse_coeff = ft_atoi_double(tab[1]);
-	else if (ft_strcmp(tab[0], "\tspecular coeff") == 0
-			&& (i = ft_atoi_double(tab[1])) < 1 && i > 0)
+	else if (ft_strcmp(tab[0], "\tspecular coeff") == 0)
 		cone->attributes.specular_coeff = ft_atoi_double(tab[1]);
 	else if (ft_strcmp(tab[0], "\tshininess") == 0)
 		cone->attributes.shininess = ft_atoi_double(tab[1]);
@@ -96,4 +91,15 @@ int		cone_parse_attributes(t_cone *cone, char *line)
 	}
 	free_split_tab(tab);
 	return (1);
+}
+
+int		cone_parse(t_cone *cone, char *line)
+{
+	if (cone_parse_attributes(cone, line))
+		return (1);
+	if (cone_parse_basics(cone, line))
+		return (1);
+	if (cone_parse_movements(cone, line))
+		return (1);
+	return (0);
 }

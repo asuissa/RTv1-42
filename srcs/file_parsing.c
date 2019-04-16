@@ -6,11 +6,29 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 07:21:00 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 19:00:22 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/16 18:44:44 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+int			check_attributes(t_attributes *attributes)
+{
+	if (attributes->color > 0xFFFFFF || attributes->color < 0)
+		return (0);
+	if (attributes->shininess > 1250.0 || attributes->shininess < 0)
+		return (0);
+	if (attributes->ambient_coeff > 1 || attributes->ambient_coeff < 0)
+		return (0);
+	if (attributes->diffuse_coeff > 1 || attributes->diffuse_coeff < 0)
+		return (0);
+	if (attributes->specular_coeff > 1 || attributes->specular_coeff < 0)
+		return (0);
+	if (attributes->diffuse_coeff
+			+ attributes->ambient_coeff + attributes->specular_coeff > 1)
+		return (0);
+	return (1);
+}
 
 t_light		*get_last_light(t_light **head)
 {
