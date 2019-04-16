@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 18:47:48 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/16 15:46:05 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,11 +255,10 @@ void			ft_error(char *msg);
 /*
 ** norme cone
 */
-int				cone_parse_1(t_cone *cone, char *line);
-int				cone_parse_2(t_cone *cone, char *line);
-int				cone_parse_3(t_cone *cone, char *line);
-int				cone_parse_coeff(t_cone *cone, char *line);
-void			cone_rot_trans(t_cone *cone, t_camera *cam);
+int				cone_parse_basics(t_cone *cone, char *line);
+int				cone_parse_movements(t_cone *cone, char *line);
+int				cone_parse_attributes(t_cone *cone, char *line);
+void			cone_rotation_translation(t_cone *cone, t_camera *cam);
 
 /*
 ** norme cylender
