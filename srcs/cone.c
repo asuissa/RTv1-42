@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 01:36:56 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/16 19:14:53 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/16 20:41:17 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_cone	*cone_parsing(int fd, t_camera *cam)
 			free(line);
 	}
 	if (!(check_cone(cone)))
-		free(cone);
+		return (NULL);
 	else
 		cone_rotation_translation(cone, cam);
 	return (cone);

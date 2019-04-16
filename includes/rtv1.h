@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/16 19:15:43 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/16 20:28:28 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void			init_light(t_light *light);
 void			init_plan(t_plan *plan);
 void			init_sphere(t_sphere *sphere);
 t_cone			*init_cone(void);
-void			init_cylender(t_cylender *cylender);
+t_cylender		*init_cylender(void);
 void			init_hit_point(t_hit *hit_point);
 
 void			get_rgb_hit_point(t_hit *hit_point);
@@ -258,14 +258,10 @@ void			ft_error(char *msg);
 */
 int				cone_parse(t_cone *cone, char *line);
 
-
 /*
 ** norme cylender
 */
-int				cylender_parse_1(t_cylender *cylender, char *line);
-int				cylender_parse_2(t_cylender *cylender, char *line);
-int				cylender_parse_coeff(t_cylender *cylender, char *line);
-int				cylender_rot_trans(t_cylender *cylender, t_camera *cam);
+int				cylender_parse(t_cylender *cylender, char *line);
 
 /*
 ** norme plan
