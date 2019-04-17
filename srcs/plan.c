@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 18:03:12 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 18:15:26 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_plan	*init_plan(void)
 {
-	t_plan *plan;
-	int i;
+	t_plan	*plan;
+	int		i;
 
 	if (!(plan = (t_plan*)malloc(sizeof(t_plan))))
 		return (NULL);
-	i = -1
+	i = -1;
 	while (++i < 3)
 	{
 		plan->point[i] = 0;
@@ -55,7 +55,7 @@ void	plan_rotation_translation(t_plan *plan, t_camera *cam)
 	rotate(plan->normal_relative, cam->cam_angle);
 }
 
-t_plan		*plan_parsing(int fd, t_camera *cam)
+t_plan	*plan_parsing(int fd, t_camera *cam)
 {
 	t_plan		*plan;
 	char		*line;
@@ -69,7 +69,7 @@ t_plan		*plan_parsing(int fd, t_camera *cam)
 			free(line);
 			break ;
 		}
-		else if (!(plan_parse(plan, line))) 		
+		else if (!(plan_parse(plan, line)))
 		{
 			free(line);
 			return (NULL);

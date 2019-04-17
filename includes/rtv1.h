@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 16:43:45 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 18:12:35 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ int				access_surface_pixels(t_env *env);
 
 void			init_cam(t_camera *cam);
 void			init_light(t_light *light);
-void			init_plan(t_plan *plan);
+t_plan			*init_plan(void);
 t_sphere		*init_sphere(void);
 t_cone			*init_cone(void);
 t_cylender		*init_cylender(void);

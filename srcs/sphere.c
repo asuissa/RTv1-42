@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 16:43:07 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 18:09:54 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_sphere	*init_sphere(void)
 {
 	t_sphere	*sphere;
-	int 		i;
+	int			i;
 
 	if (!(sphere = (t_sphere*)malloc(sizeof(t_sphere))))
 		return (NULL);

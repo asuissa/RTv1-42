@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 17:55:08 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/17 16:43:04 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 18:09:08 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,3 @@ int		sphere_parse(t_sphere *sphere, char *line)
 		return (1);
 	return (0);
 }
-
