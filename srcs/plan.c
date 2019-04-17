@@ -6,26 +6,29 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 10:54:03 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 16:12:25 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 18:03:12 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void		init_plan(t_plan *plan)
+t_plan	*init_plan(void)
 {
-	plan->type = "plan";
-	plan->point[0] = 0;
-	plan->point[1] = -1;
-	plan->point[2] = 0;
-	plan->normal[0] = 0;
-	plan->normal[1] = 1;
-	plan->normal[2] = 0;
-	plan->rotation[0] = 0;
-	plan->rotation[1] = 0;
-	plan->rotation[2] = 0;
+	t_plan *plan;
+	int i;
+
+	if (!(plan = (t_plan*)malloc(sizeof(t_plan))))
+		return (NULL);
+	i = -1
+	while (++i < 3)
+	{
+		plan->point[i] = 0;
+		plan->normal[i] = 0;
+		plan->rotation[i] = 0;
+	}
 	norm_vector(plan->normal);
 	plan->attributes.shininess = 100;
+	return (plan);
 }
 
 int		check_plan(t_plan *plan)
@@ -57,14 +60,14 @@ t_plan		*plan_parsing(int fd, t_camera *cam)
 	t_plan		*plan;
 	char		*line;
 
-	plan = (t_plan*)malloc(sizeof(t_plan));
-	init_plan(plan);
+	if (!(plan = init_plan()))
+		return (NULL);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line[0] == '\0')
 		{
 			free(line);
-			break ; //verifier free
+			break ;
 		}
 		else if (!(plan_parse(plan, line))) 		
 		{

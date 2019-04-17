@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/14 20:38:07 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:52:53 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	valid_file(int fd)
 		free(line);
 		ft_error("Camera must be defined at the beginning of the file.\n");
 	}
+	free(line);
 }
 
 int		camera_position_parsing(char *line, t_camera *cam)

@@ -6,13 +6,13 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 16:08:44 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 17:56:58 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_cylender	*init_cylender(void)
+t_cylender		*init_cylender(void)
 {
 	int			i;
 	t_cylender	*cylender;
@@ -32,7 +32,7 @@ t_cylender	*init_cylender(void)
 	return (cylender);
 }
 
-int		check_cylender(t_cylender *cylender)
+int				check_cylender(t_cylender *cylender)
 {
 	if (cylender->radius > 0)
 		return (0);
@@ -40,7 +40,9 @@ int		check_cylender(t_cylender *cylender)
 		return (0);
 	return (1);
 }
-void	cylender_rotation_translation(t_cylender *cylender, t_camera *cam)
+
+void			cylender_rotation_translation(t_cylender *cylender,
+					t_camera *cam)
 {
 	int		i;
 
@@ -57,7 +59,7 @@ void	cylender_rotation_translation(t_cylender *cylender, t_camera *cam)
 	norm_vector(cylender->line_vector_relative);
 }
 
-t_cylender	*cylender_parsing(int fd, t_camera *cam)
+t_cylender		*cylender_parsing(int fd, t_camera *cam)
 {
 	t_cylender	*cylender;
 	char		*line;
@@ -69,7 +71,7 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 		if (line[0] == '\0')
 		{
 			free(line);
-			break ; //verifier free
+			break ;
 		}
 		else if (!(cylender_parse(cylender, line)))
 		{
