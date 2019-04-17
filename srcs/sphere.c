@@ -6,17 +6,19 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:14:48 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 19:20:47 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/17 16:43:07 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void		init_sphere(t_sphere *sphere)
+t_sphere	*init_sphere(void)
 {
-	int i;
+	t_sphere	*sphere;
+	int 		i;
 
-	sphere->type = "sphere";
+	if (!(sphere = (t_sphere*)malloc(sizeof(t_sphere))))
+		return (NULL);
 	i = -1;
 	while (++i < 3)
 	{
@@ -24,6 +26,27 @@ void		init_sphere(t_sphere *sphere)
 		sphere->rotation[i] = 0;
 	}
 	sphere->radius = 1;
+	return (sphere);
+}
+
+int			check_sphere(t_sphere *sphere)
+{
+	if (check_attributes(&(sphere->attributes)) == 0)
+		return (0);
+	if (sphere->radius <= 0)
+		return (0);
+	return (1);
+}
+
+void		sphere_rotation_translation(t_sphere *sphere, t_camera *cam)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 3)
+		sphere->center_relative[i] = sphere->center[i];
+	translate(sphere->center_relative, cam->cam_pos);
+	rotate(sphere->center_relative, cam->cam_angle);
 }
 
 t_sphere	*sphere_parsing(int fd, t_camera *cam)
@@ -31,17 +54,16 @@ t_sphere	*sphere_parsing(int fd, t_camera *cam)
 	t_sphere	*sphere;
 	char		*line;
 
-	sphere = (t_sphere*)malloc(sizeof(t_sphere));
-	init_sphere(sphere);
+	if (!(sphere = init_sphere()))
+		return (NULL);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (line[0] == '\0')
 		{
 			free(line);
-			break ; //verifier free
+			break ;
 		}
-		else if (!sphere_parse_1(sphere, line) && !sphere_parse_2(sphere, line)
-				&& !sphere_parse_coeff(sphere, line))
+		else if (!(sphere_parse(sphere, line)))
 		{
 			free(line);
 			return (NULL);
@@ -49,6 +71,8 @@ t_sphere	*sphere_parsing(int fd, t_camera *cam)
 		else
 			free(line);
 	}
-	sphere_rot_trans(sphere, cam);
+	if (!(check_sphere(sphere)))
+		return (NULL);
+	sphere_rotation_translation(sphere, cam);
 	return (sphere);
 }

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 16:09:10 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 16:43:45 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int				access_surface_pixels(t_env *env);
 void			init_cam(t_camera *cam);
 void			init_light(t_light *light);
 void			init_plan(t_plan *plan);
-void			init_sphere(t_sphere *sphere);
+t_sphere		*init_sphere(void);
 t_cone			*init_cone(void);
 t_cylender		*init_cylender(void);
 void			init_hit_point(t_hit *hit_point);
@@ -271,10 +271,7 @@ int				plan_parse(t_plan *plan, char *line);
 /*
 ** norme sphere
 */
-int				sphere_parse_1(t_sphere *sphere, char *line);
-int				sphere_parse_2(t_sphere *sphere, char *line);
-int				sphere_parse_coeff(t_sphere *sphere, char *line);
-void			sphere_rot_trans(t_sphere *sphere, t_camera *cam);
+int				sphere_parse(t_sphere *sphere, char *line);
 
 /*
 ** norme light

@@ -48,7 +48,7 @@ sphere:
 	diffuse coeff: 0.6
 	specular coeff: 0.3
 	shininess: 100
-	color: FFFFFF0
+	color: FFFFFF
 
 plan:
 	position.x: 0
