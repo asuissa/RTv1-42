@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 15:16:41 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 16:08:44 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_cylender	*cylender_parsing(int fd, t_camera *cam)
 		else
 			free(line);
 	}
-	if (check_cylender(cylender))
+	if (!(check_cylender(cylender)))
 		return (NULL);
 	cylender_rotation_translation(cylender, cam);
 	return (cylender);

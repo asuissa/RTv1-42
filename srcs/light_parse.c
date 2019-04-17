@@ -6,7 +6,7 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 16:40:54 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/17 15:17:46 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 16:12:50 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,4 @@ int		light_parse(t_light *light, char *line)
 	if (light_parse_attributes(light, line))
 		return (1);
 	return (0);
-}
-
-void	light_rotation_translation(t_light *light, t_camera *cam)
-{
-	int		i;
-
-	rotate(light->direction, light->light_angle);
-	i = -1;
-	while (++i < 3)
-	{
-		light->pos_relative[i] = light->pos[i];
-		light->direction_relative[i] = light->direction[i];
-	}
-	translate(light->pos_relative, cam->cam_pos);
-	rotate(light->pos_relative, cam->cam_angle);
-	rotate(light->direction_relative, cam->cam_angle);
-	norm_vector(light->direction_relative);
-	get_rgb_light(light);
 }

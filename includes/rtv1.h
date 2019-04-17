@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 15:17:57 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 16:09:10 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,10 +266,7 @@ int				cylender_parse(t_cylender *cylender, char *line);
 /*
 ** norme plan
 */
-int				plan_parse_1(t_plan *plan, char *line);
-int				plan_parse_2(t_plan *plan, char *line);
-int				plan_parse_coeff(t_plan *plan, char *line);
-void			plan_rot_trans(t_plan *plan, t_camera *cam);
+int				plan_parse(t_plan *plan, char *line);
 
 /*
 ** norme sphere
@@ -283,6 +280,5 @@ void			sphere_rot_trans(t_sphere *sphere, t_camera *cam);
 ** norme light
 */
 int				light_parse(t_light *light, char *line);
-void			light_rotation_translation(t_light *light, t_camera *cam);
 
 #endif

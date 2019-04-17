@@ -46,13 +46,12 @@ cone:
 	vector.x: 0
 	vector.y: 1
 	vector.z: 0
-	aperture: 5
+	aperture: 15
 	ambient coeff: 0.1
 	diffuse coeff: 0.6
 	specular coeff: 0.3
 	shininess: 100
 	color: FFA500
-	rotation.z: 45
 
 plan:
 	position.x: 0

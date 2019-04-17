@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 15:17:51 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 16:11:15 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,24 @@ void		get_rgb_light(t_light *light)
 	color = color / (16 * 16);
 	light->red = (double)(color % (16 * 16));
 	color = color / (16 * 16);
+}
+
+void	light_rotation_translation(t_light *light, t_camera *cam)
+{
+	int		i;
+
+	rotate(light->direction, light->light_angle);
+	i = -1;
+	while (++i < 3)
+	{
+		light->pos_relative[i] = light->pos[i];
+		light->direction_relative[i] = light->direction[i];
+	}
+	translate(light->pos_relative, cam->cam_pos);
+	rotate(light->pos_relative, cam->cam_angle);
+	rotate(light->direction_relative, cam->cam_angle);
+	norm_vector(light->direction_relative);
+	get_rgb_light(light);
 }
 
 t_light		*light_parsing(int fd, t_light *light, t_camera *cam)

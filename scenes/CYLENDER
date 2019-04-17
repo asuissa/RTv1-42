@@ -52,7 +52,6 @@ cylender:
 	specular coeff: 0.3
 	shininess: 100
 	color: FFA500
-	rotation.z: -45
 
 plan:
 	position.x: 0
