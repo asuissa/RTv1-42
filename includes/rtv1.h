@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/16 20:28:28 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/17 15:17:57 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,8 +282,7 @@ void			sphere_rot_trans(t_sphere *sphere, t_camera *cam);
 /*
 ** norme light
 */
-int				light_parse_1(t_light *light, char *line);
-int				light_parse_2(t_light *light, char *line);
-void			light_rot_trans(t_light *light, t_camera *cam);
+int				light_parse(t_light *light, char *line);
+void			light_rotation_translation(t_light *light, t_camera *cam);
 
 #endif

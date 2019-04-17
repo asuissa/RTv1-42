@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 19:14:59 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:17:51 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ void		init_light(t_light *light)
 	light->power = 10000.0;
 	light->next = NULL;
 	light->aperture = cos(M_PI);
+}
+
+int			check_light(t_light *light)
+{
+	if (light->power < 0.0)
+		return (0);
+	if (light->color > 0x00FFFFFF || light->color < 0)
+		return (0);
+	if (light->aperture > 180.0 || light->aperture < 0)
+		return (0);
+	else
+		light->aperture = cos((light->aperture * M_PI) / 180.0); 
+	return (1);
 }
 
 void		get_rgb_light(t_light *light)
@@ -56,7 +69,7 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 			free(line);
 			break ; //verifier free
 		}
-		else if (!light_parse_1(light, line) && !light_parse_2(light, line))
+		else if (!(light_parse(light, line)))
 		{
 			free(line);
 			return (NULL);
@@ -64,6 +77,8 @@ t_light		*light_parsing(int fd, t_light *light, t_camera *cam)
 		else
 			free(line);
 	}
-	light_rot_trans(light, cam);
+	if (!(check_light(light)))
+		return (NULL);
+	light_rotation_translation(light, cam);
 	return (light);
 }

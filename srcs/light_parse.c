@@ -6,13 +6,13 @@
 /*   By: asuissa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 16:40:54 by asuissa           #+#    #+#             */
-/*   Updated: 2019/04/15 19:14:11 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/17 15:17:46 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int		light_parse_1(t_light *light, char *line)
+int		light_parse_basics(t_light *light, char *line)
 {
 	char	**tab;
 
@@ -39,14 +39,14 @@ int		light_parse_1(t_light *light, char *line)
 	return (1);
 }
 
-int		light_parse_2(t_light *light, char *line)
+int		light_parse_attributes(t_light *light, char *line)
 {
 	char	**tab;
 
 	if (!(tab = parse_word(line)))
 		return (0);
 	if (ft_strcmp(tab[0], "\taperture") == 0)
-		light->aperture = cos((ft_atoi_double(tab[1]) * M_PI) / 180.0);
+		light->aperture = ft_atoi_double(tab[1]);
 	else if (ft_strcmp(tab[0], "\tcolor") == 0)
 		light->color = ft_atoi_hexa(tab[1]);
 	else if (ft_strcmp(tab[0], "\tpower") == 0)
@@ -60,7 +60,16 @@ int		light_parse_2(t_light *light, char *line)
 	return (1);
 }
 
-void	light_rot_trans(t_light *light, t_camera *cam)
+int		light_parse(t_light *light, char *line)
+{
+	if (light_parse_basics(light, line))
+		return (1);
+	if (light_parse_attributes(light, line))
+		return (1);
+	return (0);
+}
+
+void	light_rotation_translation(t_light *light, t_camera *cam)
 {
 	int		i;
 
