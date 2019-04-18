@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/15 18:46:18 by asuissa          ###   ########.fr        #
+#    Updated: 2019/04/18 13:34:03 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS_BASENAME = main.c \
 	  sdl_functions.c \
 	  maths_functions.c \
 	  parsing_error_functions.c \
-	  list_error_functions.c \
+	  list_parsing_functions.c \
+	  read_line_functions.c \
 	  light.c \
 	  phong.c \
 	  light_component.c \
@@ -33,6 +34,7 @@ SRCS_BASENAME = main.c \
 	  ray_tracing.c \
 	  hit_point.c \
 	  file_parsing.c \
+	  new_elems_lights.c \
 	  custom_atoi.c \
 	  normal.c \
 	  camera_movement.c \

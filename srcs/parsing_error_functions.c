@@ -6,59 +6,16 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 11:24:40 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/15 19:14:38 by asuissa          ###   ########.fr       */
+/*   Updated: 2019/04/18 13:48:31 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void	free_split_tab(char **tab)
+void		ft_error(char *msg)
 {
-	int		i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	if (tab)
-		free(tab);
-	tab = NULL;
-}
-
-int		invalid_read(char *file)
-{
-	int		fd;
-	char	c[1];
-
-	if ((fd = open(file, O_RDONLY)) <= 2)
-		ft_error("Error fd open\n");
-	if ((read(fd, c, 1)) > 0 && c[0] != 'c')
-	{
-		close(fd);
-		ft_error("Error read\n");
-	}
-	return (fd);
-}
-
-int		ft_isnumber(char *nb)
-{
-	int	i;
-
-	i = 0;
-	if (!nb)
-		return (0);
-	if (*nb == '-' || *nb == '+')
-		nb++;
-	while (*nb)
-	{
-		if (*nb == '.')
-			i++;
-		else if (!ft_isdigit(*nb) && *nb != '.')
-			return (0);
-		nb++;
-	}
-	if (i > 1 || *(nb - 1) == '.')
-		return (0);
-	return (1);
+	ft_putstr(msg);
+	exit(1);
 }
 
 void		invalid_file_error(int fd)
@@ -67,33 +24,10 @@ void		invalid_file_error(int fd)
 	ft_error("file is empty, incomplete or invalid\n");
 }
 
-void		invalid_line_error(int fd, char *line)
+void		invalid_line_error(t_env *env, char *line, int fd)
 {
+	clean_lists(env->light, env->elem);
 	ft_memdel((void**)&line);
 	close(fd);
-	ft_error("file is invalid\n");
-}
-
-char		**parse_word(char *line)
-{
-	char	**tab;
-
-	if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
-	{
-		free_split_tab(tab);
-		return (NULL);
-	}
-	if ((!ft_isnumber(&tab[1][1]) || tab[1][0] != ' ')
-			&& !ft_strstr(tab[0], "color"))
-	{
-		free_split_tab(tab);
-		return (NULL);
-	}
-	return (tab);
-}
-
-void		ft_error(char *msg)
-{
-	ft_putstr(msg);
-	exit(1);
+	ft_error("file is not formated correctly\n");
 }

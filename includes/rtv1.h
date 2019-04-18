@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 18:12:35 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/18 13:49:56 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,14 @@ typedef struct	s_thread
 
 int				access_surface_pixels(t_env *env);
 
+void			new_light(t_env *env, char *line, int fd);
+void			new_sphere(t_env *env, char *line, int fd);
+void			new_plan(t_env *env, char *line, int fd);
+void			new_cone(t_env *env, char *line, int fd);
+void			new_cylender(t_env *env, char *line, int fd);
+
+
+
 void			init_cam(t_camera *cam);
 void			init_light(t_light *light);
 t_plan			*init_plan(void);
@@ -160,9 +168,11 @@ t_cylender		*init_cylender(void);
 void			init_hit_point(t_hit *hit_point);
 
 void			get_rgb_hit_point(t_hit *hit_point);
-int				compute_hit_point(t_hit *hit_point, double tmp[3],
-									double cam_center[3],
-									t_attributes attributes);
+int				compute_hit_point(t_hit *hit_point,
+					double tmp[3],
+					double cam_center[3],
+					t_attributes attributes);
+
 void			*ray_casting(void *arg);
 
 double			dot_product(double vec1[3], double vec2[3]);
@@ -234,48 +244,43 @@ void			rotate(double coord[3], double cam_angle[3]);
 void			translate(double coord[3], double cam_pos[3]);
 double			point_distance(double coord_one[3], double coord_two[3]);
 
+/*
+ ** camera movements functions
+*/
 void			update_scene(t_env *env);
 void			update_sphere(void *sphere, t_camera *cam);
 void			update_plan(void *plan, t_camera *cam);
 void			update_cylender(void *cylender, t_camera *cam);
 void			update_cone(void *cone, t_camera *cam);
 
-int				ft_isnumber(char *nb);
-
 /*
-** Error fctn
+** elem and light lists functions
 */
 void			clean_lists(t_light *light, t_elem *elem);
-void			invalid_line_error(int fd, char *line);
-void			invalid_file_error(int fd);
-void			free_split_tab(char **tab);
-int				invalid_read(char *file);
-char			**parse_word(char *line);
-void			ft_error(char *msg);
+t_light			*get_last_light(t_light **head);
+t_elem			*get_last_elem(t_elem **head);
 
 /*
-** norme cone
+ ** error functions
+*/
+void			ft_error(char *msg);
+void			invalid_line_error(t_env *env, char *line, int fd);
+void			invalid_file_error(int fd);
+
+/*
+ ** read line fucntions
+*/
+int				ft_isnumber(char *nb);
+void			free_split_tab(char **tab);
+char			**parse_word(char *line);
+
+/*
+** objects and lights parsing
 */
 int				cone_parse(t_cone *cone, char *line);
-
-/*
-** norme cylender
-*/
 int				cylender_parse(t_cylender *cylender, char *line);
-
-/*
-** norme plan
-*/
 int				plan_parse(t_plan *plan, char *line);
-
-/*
-** norme sphere
-*/
 int				sphere_parse(t_sphere *sphere, char *line);
-
-/*
-** norme light
-*/
 int				light_parse(t_light *light, char *line);
 
 #endif
