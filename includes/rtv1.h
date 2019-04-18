@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/18 13:49:56 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:28:16 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,15 +158,7 @@ void			new_cone(t_env *env, char *line, int fd);
 void			new_cylender(t_env *env, char *line, int fd);
 
 
-
-void			init_cam(t_camera *cam);
-void			init_light(t_light *light);
-t_plan			*init_plan(void);
-t_sphere		*init_sphere(void);
-t_cone			*init_cone(void);
-t_cylender		*init_cylender(void);
 void			init_hit_point(t_hit *hit_point);
-
 void			get_rgb_hit_point(t_hit *hit_point);
 int				compute_hit_point(t_hit *hit_point,
 					double tmp[3],
@@ -242,7 +234,6 @@ void			compute_color(t_hit *hit_point, double ray_vector[3], t_env *env);
 
 void			rotate(double coord[3], double cam_angle[3]);
 void			translate(double coord[3], double cam_pos[3]);
-double			point_distance(double coord_one[3], double coord_two[3]);
 
 /*
  ** camera movements functions
@@ -268,10 +259,10 @@ void			invalid_line_error(t_env *env, char *line, int fd);
 void			invalid_file_error(int fd);
 
 /*
- ** read line fucntions
+ ** read line functions
 */
-int				ft_isnumber(char *nb);
-void			free_split_tab(char **tab);
+int				convert_hexa(char c);
+void			*free_split_tab(char **tab);
 char			**parse_word(char *line);
 
 /*

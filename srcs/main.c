@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 11:25:46 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/18 18:07:52 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		quit_sdl(SDL_Window *window)
 		SDL_DestroyWindow(window);
 	SDL_Quit();
 }
-// salut les potes
+
 int			sdl_has_fcked_up(t_env *env)
 {
 /*	TO DO: create different functions according to  error message 
@@ -33,9 +33,9 @@ int			main_loop(t_env *env)
 	SDL_Event		event;
 	int				quit;
 
-	if (!(access_surface_pixels(env))) 
+	if (!(access_surface_pixels(env)))
 		return (sdl_has_fcked_up(env));
-	if (SDL_UpdateWindowSurface(env->window) < 0) 
+	if (SDL_UpdateWindowSurface(env->window) < 0)
 		return (sdl_has_fcked_up(env));
 	quit = 0;
 	while (!quit)
@@ -76,7 +76,7 @@ int			main_loop(t_env *env)
 				{
 					update_scene(env);
 					access_surface_pixels(env);
-					SDL_UpdateWindowSurface(env->window); 
+					SDL_UpdateWindowSurface(env->window);
 				}
 			}
 		}
@@ -88,7 +88,6 @@ int			main(int ac, char **av)
 {
 	t_env	env;
 
-	//check input file && generate object list
 	if (ac == 2)
 	{
 		env.elem = NULL;
@@ -100,11 +99,11 @@ int			main(int ac, char **av)
 		else
 		{
 			if (!(env.window = SDL_CreateWindow("RTv1", 50, 50,
-							SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN)))
+						SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN)))
 				return (sdl_has_fcked_up(&env));
 			else
 			{
-				env.screen = SDL_GetWindowSurface(env.window);	
+				env.screen = SDL_GetWindowSurface(env.window);
 				if (main_loop(&env) < 0)
 					return (sdl_has_fcked_up(&env));
 			}

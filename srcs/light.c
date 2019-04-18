@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 20:27:25 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 19:08:09 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:39:58 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int			check_light(t_light *light)
 {
 	if (light->power < 0.0)
 		return (0);
-	if (light->color > 0x00FFFFFF || light->color < 0)
+	if (light->color > 0xFFFFFF || light->color < 0)
 		return (0);
 	if (light->aperture > 180.0 || light->aperture < 0)
 		return (0);

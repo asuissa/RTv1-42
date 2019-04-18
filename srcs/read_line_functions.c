@@ -6,53 +6,13 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 13:22:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/18 14:19:22 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/18 17:58:06 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int		ft_isnumber(char *nb)
-{
-	int	i;
-
-	i = 0;
-	if (!nb)
-		return (0);
-	if (*nb == '-' || *nb == '+')
-		nb++;
-	while (*nb)
-	{
-		if (*nb == '.')
-			i++;
-		else if (!ft_isdigit(*nb) && *nb != '.')
-			return (0);
-		nb++;
-	}
-	if (i > 1 || *(nb - 1) == '.')
-		return (0);
-	return (1);
-}
-
-char	**parse_word(char *line)
-{
-	char	**tab;
-
-	if (!(tab = ft_strsplit(line, ':')) || tab[2] != NULL)
-	{
-		free_split_tab(tab);
-		return (NULL);
-	}
-	if ((!ft_isnumber(&tab[1][1]) || tab[1][0] != ' ')
-			&& !ft_strstr(tab[0], "color"))
-	{
-		free_split_tab(tab);
-		return (NULL);
-	}
-	return (tab);
-}
-
-void	free_split_tab(char **tab)
+void	*free_split_tab(char **tab)
 {
 	int		i;
 
@@ -62,4 +22,67 @@ void	free_split_tab(char **tab)
 	if (tab)
 		free(tab);
 	tab = NULL;
+	return (NULL);
+}
+
+int		check_color_format(char *str)
+{
+	int		i;
+
+	if (str[0] != ' ')
+		return (0);
+	i = 0;
+	while (str[++i])
+	{
+		if (convert_hexa(str[i]) == -1)
+			return (0);
+	}
+	return (1);
+}
+
+int		check_double_format(char *str)
+{
+	int		i;
+	int		dot;
+
+	if (str[0] != ' ')
+		return (0);
+	i = 0;
+	if (str[1] == '+' || str[1] == '-')
+		i = 1;
+	dot = 0;
+	while (str[++i])
+	{
+		if (str[i] == '.' && dot == 1)
+			return (0);
+		if (str[i] == '.' && dot == 0)
+			dot = 1;
+		if (!(ft_isdigit(str[i])) && str[i] != '.')
+			return (0);
+	}
+	return (1);
+}
+
+char	**parse_word(char *line)
+{
+	char	**tab;
+
+	if (!(tab = ft_strsplit(line, ':')))
+		return (NULL);
+	if (!(tab[1]) || tab[2])
+	{
+		free_split_tab(tab);
+		return (NULL);
+	}
+	if (ft_strstr("\tcolor", tab[0]))
+	{
+		if (!(check_color_format(tab[1])))
+			return (free_split_tab(tab));
+	}
+	else
+	{
+		if (!(check_double_format(tab[1])))
+			return (free_split_tab(tab));
+	}
+	return (tab);
 }

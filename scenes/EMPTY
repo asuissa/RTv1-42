@@ -36,7 +36,7 @@ light:
 	angle.y: 0
 	angle.z: 0
 	color: FF00
-	power: 100000
+	powetr: 100000
 	aperture: 35
 
 sphere:

@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 12:01:59 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/18 12:28:44 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/18 16:38:48 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,15 @@ void		new_light(t_env *env, char *line, int fd)
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a light");
+		ft_error("an error occured while parsing a light.\n");
 	}
 	if (!(new_light = light_parsing(fd, new_light, &(env->cam))))
 	{
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a light");
+		ft_error("an error occured while parsing a light.\n");
 	}
-	printf("light done\n");
 }
 
 void		new_sphere(t_env *env, char *line, int fd)
@@ -42,18 +41,17 @@ void		new_sphere(t_env *env, char *line, int fd)
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a sphere");
+		ft_error("an error occured while parsing a sphere.\n");
 	}
 	if (!(new_elem->object = sphere_parsing(fd, &(env->cam))))
 	{
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a sphere");
+		ft_error("an error occured while parsing a sphere.\n");
 	}
 	new_elem->hit_funct = &hit_sphere;
 	new_elem->update_funct = &update_sphere;
-	printf("sphere done\n");
 }
 
 void		new_plan(t_env *env, char *line, int fd)
@@ -65,18 +63,17 @@ void		new_plan(t_env *env, char *line, int fd)
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a plan");
+		ft_error("an error occured while parsing a plan.\n");
 	}
 	if (!(new_elem->object = plan_parsing(fd, &(env->cam))))
 	{
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a plan");
+		ft_error("an error occured while parsing a plan.\n");
 	}
 	new_elem->hit_funct = &hit_plan;
 	new_elem->update_funct = &update_plan;
-	printf("plan done\n");
 }
 
 void		new_cone(t_env *env, char *line, int fd)
@@ -88,18 +85,17 @@ void		new_cone(t_env *env, char *line, int fd)
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a cone");
+		ft_error("an error occured while parsing a cone.\n");
 	}
 	if (!(new_elem->object = cone_parsing(fd, &(env->cam))))
 	{
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a cone");
+		ft_error("an error occured while parsing a cone.\n");
 	}
 	new_elem->hit_funct = &hit_cone;
 	new_elem->update_funct = &update_cone;
-	printf("cone done\n");
 }
 
 void		new_cylender(t_env *env, char *line, int fd)
@@ -111,16 +107,15 @@ void		new_cylender(t_env *env, char *line, int fd)
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a cylender");
+		ft_error("an error occured while parsing a cylender.\n");
 	}
 	if (!(new_elem->object = cylender_parsing(fd, &(env->cam))))
 	{
 		clean_lists(env->light, env->elem);
 		free(line);
 		close(fd);
-		ft_error("an error occured while parsing a cylender");
+		ft_error("an error occured while parsing a cylender.\n");
 	}
 	new_elem->hit_funct = &hit_cylender;
 	new_elem->update_funct = &update_cylender;
-	printf("cylender done\n");
 }
