@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 13:22:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/18 17:58:06 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/19 18:18:47 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**parse_word(char *line)
 
 	if (!(tab = ft_strsplit(line, ':')))
 		return (NULL);
-	if (!(tab[1]) || tab[2])
+	if (!(tab[1]) || tab[2] || (ft_strlen(tab[1]) > 12))
 	{
 		free_split_tab(tab);
 		return (NULL);

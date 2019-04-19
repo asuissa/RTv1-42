@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 06:45:28 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 17:56:58 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/18 18:20:07 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_cylender		*init_cylender(void)
 
 int				check_cylender(t_cylender *cylender)
 {
-	if (cylender->radius > 0)
+	if (cylender->radius <= 0)
 		return (0);
 	if (check_attributes(&(cylender->attributes)) == 0)
 		return (0);
