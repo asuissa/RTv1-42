@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/19 19:38:45 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/19 19:49:15 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ void		quit_sdl(SDL_Window *window)
 
 int			sdl_has_fcked_up(t_env *env)
 {
-/*	TO DO: create different functions according to  error message 
-	printf("Window creation failed. SDL_Error: %s\n", SDL_GetError());
-	printf("SDL initialisation failed. SDL_Error: %s\n", SDL_GetError());*/
+	clean_lists(env->light, env->elem);
+	ft_putendl("an SDL error occured .\n");
 	quit_sdl(env->window);
 	return (-1);
 }
