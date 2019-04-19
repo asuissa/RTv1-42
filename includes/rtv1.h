@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/18 16:28:16 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/19 19:34:30 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,7 @@ void			translate(double coord[3], double cam_pos[3]);
 /*
  ** camera movements functions
 */
+void			key_event(t_env *env, SDL_Keycode event);
 void			update_scene(t_env *env);
 void			update_sphere(void *sphere, t_camera *cam);
 void			update_plan(void *plan, t_camera *cam);

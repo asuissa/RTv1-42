@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/18 13:34:03 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/19 19:30:53 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS = srcs/
 
 SRCS_BASENAME = main.c \
 	  sdl_functions.c \
+	  key_event.c \
 	  maths_functions.c \
 	  parsing_error_functions.c \
 	  list_parsing_functions.c \

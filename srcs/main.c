@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/18 18:07:52 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/19 19:38:45 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,38 +46,9 @@ int			main_loop(t_env *env)
 				quit = 1;
 			if (event.type == SDL_KEYDOWN)
 			{
+				key_event(env, event.key.keysym.sym);
 				if (event.key.keysym.sym == SDLK_ESCAPE)
 					quit = 1;
-				if (event.key.keysym.sym == SDLK_UP)
-					env->cam.cam_pos[2] += 1.0;
-				if (event.key.keysym.sym == SDLK_DOWN)
-					env->cam.cam_pos[2] -= 1.0;
-				if (event.key.keysym.sym == SDLK_RIGHT)
-					env->cam.cam_pos[0] += 1.0;
-				if (event.key.keysym.sym == SDLK_LEFT)
-					env->cam.cam_pos[0] -= 1.0;
-				if (event.key.keysym.sym == SDLK_a)
-					env->cam.cam_pos[1] -= 1.0;
-				if (event.key.keysym.sym == SDLK_q)
-					env->cam.cam_pos[1] += 1.0;
-				if (event.key.keysym.sym == SDLK_e)
-					env->cam.cam_angle[0] += (M_PI / 180.0);
-				if (event.key.keysym.sym == SDLK_d)
-					env->cam.cam_angle[0] -= (M_PI / 180.0);
-				if (event.key.keysym.sym == SDLK_r)
-					env->cam.cam_angle[1] += (M_PI / 180.0);
-				if (event.key.keysym.sym == SDLK_f)
-					env->cam.cam_angle[1] -= (M_PI / 180.0);
-				if (event.key.keysym.sym == SDLK_t)
-					env->cam.cam_angle[2] += (M_PI / 180.0);
-				if (event.key.keysym.sym == SDLK_g)
-					env->cam.cam_angle[2] -= (M_PI / 180.0);
-				if (event.key.keysym.sym != SDLK_ESCAPE)
-				{
-					update_scene(env);
-					access_surface_pixels(env);
-					SDL_UpdateWindowSurface(env->window);
-				}
 			}
 		}
 	}
@@ -90,10 +61,7 @@ int			main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		env.elem = NULL;
 		file_parsing(av[1], &env);
-		env.window = NULL;
-		env.screen = NULL;
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 			return (sdl_has_fcked_up(&env));
 		else
