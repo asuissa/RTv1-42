@@ -6,7 +6,7 @@
 #    By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 15:07:58 by ymekraou          #+#    #+#              #
-#    Updated: 2019/04/19 19:30:53 by ymekraou         ###   ########.fr        #
+#    Updated: 2019/04/20 00:39:34 by ymekraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS_BASENAME = main.c \
 	  update_scene.c \
 	  update_objects.c \
 	  hit_sphere.c \
+	  simple_cone_functions.c \
 	  hit_cone.c \
 	  hit_plan.c \
 	  hit_cylender.c \

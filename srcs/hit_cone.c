@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 10:29:10 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/09 02:55:57 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/20 02:50:09 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,13 @@ double		compute_c_cone(t_cone cone, double cam_center[3])
 	return (tmp2);
 }
 
-int			test_opposite_cone(double point[3], t_cone cone)
-{
-	double	tmp[3];
-	int		i;
-
-	i = -1;
-	while (++i < 3)
-		tmp[i] = point[i] - cone.origin_relative[i];
-	norm_vector(tmp);
-	if (dot_product(tmp, cone.vector_relative) < 0)
-		return (1);
-	return (0);
-}
-
 void		hit_cone(double ray_vector[3],
 						double cam_center[3], void *data, t_hit *hit_point)
 {
 	double	discr[3];
-	double	ratio;
-	double	tmp[3];
+	double	ratio[2];
+	double	tmp1[3];
+	double	tmp2[3];
 	t_cone	*cone;
 
 	cone = (t_cone*)data;
@@ -78,13 +65,13 @@ void		hit_cone(double ray_vector[3],
 	discr[2] = compute_c_cone(*cone, cam_center);
 	if (pow(discr[1], 2) - (4 * discr[0] * discr[2]) >= 0)
 	{
-		ratio = compute_ratio(discr[0], discr[1], discr[2]);
-		tmp[0] = cam_center[0] + ratio * ray_vector[0];
-		tmp[1] = cam_center[1] + ratio * ray_vector[1];
-		tmp[2] = cam_center[2] + ratio * ray_vector[2];
-		if (test_opposite_cone(tmp, *cone))
+		simple_cone_ratio(ratio, discr[0], discr[1], discr[2]);
+		cone_hit_point(ratio[0], cam_center, ray_vector, tmp1);
+		cone_hit_point(ratio[1], cam_center, ray_vector, tmp2);
+		if (test_simple_cone(ratio, tmp1, tmp2, cone))
 		{
-			if (compute_hit_point(hit_point, tmp, cam_center, cone->attributes))
+			if (compute_hit_point(hit_point, tmp1,
+						cam_center, cone->attributes))
 			{
 				normal_cone(cone, hit_point);
 				hit_point->obj = data;

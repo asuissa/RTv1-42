@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/19 19:34:30 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/20 00:39:04 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,16 +193,33 @@ void			hit_plan(double ray_vector[3],
 					double cam_center[3],
 					void *data,
 					t_hit *hit_point);
+void			hit_cylender(double ray_vector[3],
+					double cam_center[3],
+					void *data,
+					t_hit *hit_point);
 
+
+/*
+ ** hit cone functions
+*/
+void			simple_cone_ratio(double ratio[2],
+					double a,
+					double b,
+					double c);
+void			cone_hit_point(double ratio,
+					double cam_center[3],
+					double ray_vector[3],
+					double tmp[3]);
+int				test_simple_cone(double ratio[2],
+					double tmp1[3],
+					double tmp2[3],
+					t_cone *cone);
 void			hit_cone(double ray_vector[3],
 					double cam_center[3],
 					void *data,
 					t_hit *hit_point);
 
-void			hit_cylender(double ray_vector[3],
-					double cam_center[3],
-					void *data,
-					t_hit *hit_point);
+
 
 void			normal_sphere(double sphere_center[3], t_hit *hit_point);
 void			normal_plan(double normal_plan[3], t_hit *hit_point);
