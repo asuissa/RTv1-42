@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 06:02:20 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/17 17:52:53 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:39:13 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ void	init_cam(t_camera *cam)
 	cam->vp_center[0] = 0;
 	cam->vp_center[1] = 0;
 	cam->vp_center[2] = 1;
-	cam->vf_angle = (90.0 * M_PI) / 180.0;
-	cam->vp_dim = (double)(fabs(atan(cam->vf_angle / 2.0)));
-	cam->pas = cam->vp_dim / ((double)(SCREEN_WIDTH) / 2.0);
+	cam->vf_angle = ((90.0 / 2.0) * M_PI) / 180.0;
+	cam->vp_width = 0.5;
+	cam->pixel_size = (cam->vp_width * 2.0) / (double)(SCREEN_WIDTH);
+	cam->vp_height = cam->pixel_size * (double)(SCREEN_HEIGHT);
 }
 
 void	valid_file(int fd)

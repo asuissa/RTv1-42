@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/22 00:42:31 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:46:14 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # include "libft.h"
 # include "SDL.h"
 
-# define SCREEN_WIDTH 1000
+# define SCREEN_WIDTH 1200
 # define SCREEN_HEIGHT 1000
+# define THREAD_NB 16
 
 typedef struct		s_attributes
 {
@@ -51,7 +52,7 @@ typedef struct		s_hit
 }					t_hit;
 
 /*
- ** Camera vp_dim is half lenght
+ ** Camera vp_dim is half length
 */
 typedef struct		s_camera
 {
@@ -60,9 +61,9 @@ typedef struct		s_camera
 	double			cam_pos_relative[3];
 	double			vp_center[3];
 	double			vf_angle;
-	double			vp_dim;
-	double			pas;
-
+	double			vp_width;
+	double			vp_height;
+	double			pixel_size;
 }					t_camera;
 
 typedef struct		s_light
@@ -105,7 +106,6 @@ typedef struct		s_plan
 /*
  ** cone aperture angle is divided by 2
 */
-
 typedef struct		s_cone
 {
 	char			*type;
@@ -150,7 +150,7 @@ typedef struct		s_env
 typedef struct		s_thread
 {
 	t_env			*env;
-	int				pixel_end;
+	int				range_y;
 	int				pixel_start;
 	double			offset;
 }					t_thread;
@@ -178,24 +178,28 @@ int					cylender_parse(t_cylender *cylender, char *line);
 int					plan_parse(t_plan *plan, char *line);
 int					sphere_parse(t_sphere *sphere, char *line);
 int					light_parse(t_light *light, char *line);
+
 /*
  ** read line functions
 */
 int					convert_hexa(char c);
 void				*free_split_tab(char **tab);
 char				**parse_word(char *line);
+
 /*
 ** elem and light lists functions
 */
 void				clean_lists(t_light *light, t_elem *elem);
 t_light				*get_last_light(t_light **head);
 t_elem				*get_last_elem(t_elem **head);
+
 /*
  ** error functions
 */
 void				ft_error(char *msg);
 void				invalid_line_error(t_env *env, char *line, int fd);
 void				invalid_file_error(int fd);
+
 /*
  ** maths functions
 */
@@ -203,6 +207,7 @@ double				dot_product(double vec1[3], double vec2[3]);
 void				norm_vector(double vec[3]);
 double				point_distance(double coord_one[3], double coord_two[3]);
 double				compute_ratio(double a, double b, double c);
+
 /*
  ** normals functions
 */
@@ -210,6 +215,7 @@ void				normal_sphere(double sphere_center[3], t_hit *hit_point);
 void				normal_plan(double normal_plan[3], t_hit *hit_point);
 void				normal_cylender(t_cylender *cylender, t_hit *hit_point);
 void				normal_cone(t_cone *cone, t_hit *hit_point);
+
 /*
  ** camera and objects movements functions
 */
@@ -221,6 +227,7 @@ void				update_cylender(void *cylender, t_camera *cam);
 void				update_cone(void *cone, t_camera *cam);
 void				rotate(double coord[3], double cam_angle[3]);
 void				translate(double coord[3], double cam_pos[3]);
+
 /*
  ** ray casting functions
 */

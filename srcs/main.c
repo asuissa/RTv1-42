@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 02:56:32 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/19 19:49:15 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:41:05 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int			main(int ac, char **av)
 		else
 		{
 			if (!(env.window = SDL_CreateWindow("RTv1", 50, 50,
-						SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN)))
+							(int)(SCREEN_WIDTH), (int)(SCREEN_HEIGHT),
+							SDL_WINDOW_SHOWN)))
 				return (sdl_has_fcked_up(&env));
 			else
 			{

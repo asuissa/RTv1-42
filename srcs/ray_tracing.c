@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 10:28:49 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 10:50:25 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/23 18:47:10 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,26 @@ void		*ray_casting(void *arg)
 	t_env		*env;
 	double		pixel_center[3];
 	int			k;
+	int			x;
+	int			y;
 
 	env = ((t_thread*)arg)->env;
 	pixel_center[2] = env->cam.vp_center[2];
-	pixel_center[1] = env->cam.vp_center[1] + env->cam.vp_dim
-		+ ((env->cam.pas) / 2.0) - ((t_thread*)arg)->offset;
+	pixel_center[1] = env->cam.vp_center[1]
+		+ (env->cam.vp_height / 2.0) - ((t_thread*)arg)->offset;
 	k = ((t_thread*)arg)->pixel_start;
-	while (k < ((t_thread*)arg)->pixel_end)
+	y = -1;
+	while (++y < ((t_thread*)arg)->range_y)
 	{
+		x = -1;
 		pixel_center[0] = env->cam.vp_center[0]
-			- env->cam.vp_dim + ((env->cam.pas) / 2.0);
-		while (pixel_center[0] <= (env->cam.vp_center[0]
-					+ env->cam.vp_dim - ((env->cam.pas) / 2.0)))
+			- env->cam.vp_width + (env->cam.pixel_size / 2.0);
+		while (++x < (int)(SCREEN_WIDTH))
 		{
 			((int*)(env->screen->pixels))[k++] = trace_ray(pixel_center, env);
-			pixel_center[0] += (env->cam.pas);
+			pixel_center[0] += (env->cam.pixel_size);
 		}
-		pixel_center[1] -= (env->cam.pas);
+		pixel_center[1] -= (env->cam.pixel_size);
 	}
 	pthread_exit(NULL);
 }
