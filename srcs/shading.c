@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 12:06:23 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/13 12:44:44 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/26 05:04:25 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		shading(t_light *light, double light_ray[3],
 	init_shade_hit(&shade_hit, hit_point, bias);
 	init_shade_vector(light, bias, vector);
 	init_reversed_light(light_ray, reversed_light);
-	if (dot_product(reversed_light, light->direction_relative)
+	if (-dot_product(reversed_light, light->direction_relative)
 			< light->aperture)
 		return (0);
 	tmp = elem;

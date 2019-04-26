@@ -10,34 +10,12 @@ light:
 	position.x: 20
 	position.y: 10
 	position.z: -15
-	angle.x: -20
-	angle.y: 35
+	angle.x: 0
+	angle.y: 5
 	angle.z: 0
 	color: FFFFFF
 	power: 100
-	aperture: 25
-
-light:
-	position.x: -20
-	position.y: 10
-	position.z: -15
-	angle.x: -20
-	angle.y: -35
-	angle.z: 0
-	color: FFFFFF
-	power: 100
-	aperture: 25
-
-light:
-	position.x: 0
-	position.y: 10
-	position.z: -15
-	angle.x: -20
-	angle.y: 0
-	angle.z: 0
-	color: FFFFFF
-	power: 100
-	aperture: 25
+	aperture: 180
 
 cylender:
 	position.x: 0
@@ -51,17 +29,4 @@ cylender:
 	diffuse coeff: 0.6
 	specular coeff: 0.3
 	shininess: 100
-	color: FFA500
-
-plan:
-	position.x: 0
-	position.y: 0
-	position.z: 0
-	normal.x: 0
-	normal.y: 1
-	normal.z: 0
-	ambient coeff: 0.1
-	diffuse coeff: 0.6
-	specular coeff: 0.3
-	shininess: 100
-	color: FFFFFF
+	color: CC42DB

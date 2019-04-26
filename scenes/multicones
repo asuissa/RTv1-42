@@ -1,0 +1,141 @@
+camera:
+	position.x: 0
+	position.y: 10
+	position.z: -5
+	angle.x: 30
+	angle.y: 0
+	angle.z: 0
+
+light:
+	position.x: 10
+	position.y: 50
+	position.z: -15
+	angle.x: 0
+	angle.y: 0
+	angle.z: 0
+	color: FFFFFF
+	power: 10000
+	aperture: 180
+
+light:
+	position.x: -10
+	position.y: 30
+	position.z: -15
+	angle.x: 0
+	angle.y: 0
+	angle.z: 0
+	color: FFFFFF
+	power: 10000
+	aperture: 180
+
+cone:
+	position.x: -1
+	position.y: 3
+	position.z: 4
+	vector.x: 0
+	vector.y: 0
+	vector.z: -1
+	aperture: 5
+	ambient coeff: 0.1
+	diffuse coeff: 0.4
+	specular coeff: 0.5
+	shininess: 10
+	color: 9DA1AC
+
+cone:
+	position.x: 0
+	position.y: 3
+	position.z: 4
+	vector.x: 0
+	vector.y: 0
+	vector.z: -1
+	aperture: 10
+	ambient coeff: 0.1
+	diffuse coeff: 0.4
+	specular coeff: 0.5
+	shininess: 10
+	color: 9DA1AC
+
+cone:
+	position.x: 1
+	position.y: 3
+	position.z: 4
+	vector.x: 0
+	vector.y: 0
+	vector.z: -1
+	aperture: 15
+	ambient coeff: 0.1
+	diffuse coeff: 0.4
+	specular coeff: 0.5
+	shininess: 15
+	color: 9DA1AC
+
+cone:
+	position.x: 2
+	position.y: 3
+	position.z: 4
+	vector.x: 0
+	vector.y: 0
+	vector.z: -1
+	aperture: 20
+	ambient coeff: 0.1
+	diffuse coeff: 0.4
+	specular coeff: 0.5
+	shininess: 10
+	color: 9DA1AC
+
+cone:
+	position.x: 3
+	position.y: 3
+	position.z: 4
+	vector.x: 0
+	vector.y: 0
+	vector.z: -1
+	aperture: 25
+	ambient coeff: 0.1
+	diffuse coeff: 0.4
+	specular coeff: 0.5
+	shininess: 10
+	color: 9DA1AC
+
+cone:
+	position.x: 4
+	position.y: 3
+	position.z: 4
+	vector.x: 0
+	vector.y: 0
+	vector.z: -1
+	aperture: 30
+	ambient coeff: 0.1
+	diffuse coeff: 0.4
+	specular coeff: 0.5
+	shininess: 10
+	color: 9DA1AC
+	translation.x: 1
+
+cone:
+	position.x: 5
+	position.y: 6
+	position.z: 5
+	vector.x: 1
+	vector.y: 0
+	vector.z: 0
+	aperture: 10
+	ambient coeff: 0.1
+	diffuse coeff: 0.4
+	specular coeff: 0.5
+	shininess: 10
+	color: 000000
+
+plan:
+	position.x: 0
+	position.y: 0
+	position.z: 5
+	normal.x: 0
+	normal.y: 0
+	normal.z: -1
+	ambient coeff: 0.3
+	diffuse coeff: 0.7
+	specular coeff: 0.0
+	shininess: 0
+	color: FFFFD4

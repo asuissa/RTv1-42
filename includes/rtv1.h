@@ -6,7 +6,7 @@
 /*   By: ymekraou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 19:47:19 by ymekraou          #+#    #+#             */
-/*   Updated: 2019/04/23 18:46:14 by ymekraou         ###   ########.fr       */
+/*   Updated: 2019/04/26 04:02:16 by ymekraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "SDL.h"
 
 # define SCREEN_WIDTH 1200
-# define SCREEN_HEIGHT 1000
+# define SCREEN_HEIGHT 1200
 # define THREAD_NB 16
 
 typedef struct		s_attributes

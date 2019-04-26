@@ -1,0 +1,51 @@
+camera:
+	position.x: 0
+	position.y: 5
+	position.z: -12
+	angle.x: 0
+	angle.y: 0
+	angle.z: 0
+
+light:
+	position.x: 20
+	position.y: 5
+	position.z: -5
+	angle.x: 0
+	angle.y: 0
+	angle.z: 0
+	color: FFFFFF
+	power: 10000
+	aperture: 180
+
+light:
+	position.x: -20
+	position.y: 5
+	position.z: -5
+	angle.x: 0
+	angle.y: 0
+	angle.z: 0
+	color: FFFFFF
+	power: 10000
+	aperture: 180
+
+light:
+	position.x: 0
+	position.y: 5
+	position.z: -5
+	angle.x: 0
+	angle.y: 0
+	angle.z: 0
+	color: FFFFFF
+	power: 10000
+	aperture: 180
+
+sphere:
+	position.x: 0
+	position.y: 5
+	position.z: 5
+	radius: 5
+	ambient coeff: 0.1
+	diffuse coeff: 0.5
+	specular coeff: 0.4
+	shininess: 450
+	color: FF0921
